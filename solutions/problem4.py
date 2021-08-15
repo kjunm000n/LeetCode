@@ -6,9 +6,8 @@ from solutions.interface import *
 
 
 class Problem4(ProblemInterface):
-    def __init__(self):
-        self.problem_number = self.super().number
-        self.debug = self.super().debug
+    def __init__(self, debug=False):
+        self.debug = debug
 
     def avg(self, nums):
         return sum(nums)/len(nums)
@@ -40,6 +39,35 @@ class Problem4(ProblemInterface):
             return self.median(nums1)
         if len(nums1) == 1 and len(nums2) == 1:
             return self.avg(nums1+nums2)
+        if len(nums1) == 1 and len(nums2) == 2:
+            if nums1[0] > nums2[1]:
+                return nums2[1]
+            elif nums1[0] < nums2[0]:
+                return nums2[0]
+            else:
+                return nums1[0]
+        if len(nums1) == 2 and len(nums2) == 1:
+            if nums2[0] > nums1[1]:
+                return nums1[1]
+            elif nums2[0] < nums1[0]:
+                return nums1[0]
+            else:
+                return nums2[0]
+        if len(nums1) == 2 and len(nums2) == 2:
+            if nums1[1] <= nums2[0]:
+                return self.avg([nums1[1], nums2[0]])
+            elif nums1[0] >= nums2[1]:
+                return self.avg([nums1[0], nums2[1]])
+            elif nums1[0] <= nums2[0] <= nums2[1] <= nums1[1]:
+                return self.avg(nums2)
+            elif nums2[0] <= nums1[0] <= nums1[1] <= nums2[1]:
+                return self.avg(nums1)
+            elif nums2[0] <= nums1[0] <= nums2[1] <= nums1[1]:
+                return self.avg([nums1[0], nums2[1]])
+            elif nums1[0] <= nums2[0] <= nums1[1] <= nums2[1]:
+                return self.avg([nums1[1], nums2[0]])
+            else:
+                raise
 
         front1, mid1, back1 = self.divide_according_to_median(nums1)
         front2, mid2, back2 = self.divide_according_to_median(nums2)
@@ -89,8 +117,18 @@ class Problem4(ProblemInterface):
             elif mid2[0] <= mid1[0] <= mid1[1] <= mid2[0]:
                 return self.avg(mid1)
             elif mid1[0] >= mid2[1]:
+                if (len(nums1) + len(nums2) + len(front1) + len(back2)) % 2 == 1:
+                    if len(front1) > len(back2):
+                        front1 = front1[:-1]
+                    else:
+                        back2 = back2[1:]
                 next_nums1, next_nums2 = front1, back2
             elif mid1[1] <= mid2[0]:
+                if (len(nums1) + len(nums2) + len(front2) + len(back1)) % 2 == 1:
+                    if len(front2) > len(back1):
+                        front2 = front2[:-1]
+                    else:
+                        back1 = back1[1:]
                 next_nums1, next_nums2 = back1, front2
             else:
                 next_nums1, next_nums2 = nums1, nums2
@@ -98,7 +136,7 @@ class Problem4(ProblemInterface):
                     next_nums1 = next_nums1[:1]
                 else:
                     next_nums2 = next_nums2[:1]
-                if next_nums1[-1] < next_nums2[-1]:
+                if next_nums1[-1] > next_nums2[-1]:
                     next_nums1 = next_nums1[:-1]
                 else:
                     next_nums2 = next_nums2[:-1]

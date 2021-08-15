@@ -1,9 +1,5 @@
 
 class ProblemInterface:
-    def __init__(self, number, debug=False):
-        self.problem_number = number
-        self.debug=debug
-
     def solution(self, *args, **kwargs):
         raise Exception("solution is not implemented yet")
 
