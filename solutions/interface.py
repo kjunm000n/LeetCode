@@ -11,9 +11,9 @@ class ProblemInterface:
         print(f"output: {my_output}")
         assert my_output == expected_output
 
-    def test_with_cases(self, inputs, outputs):
-        for input, output in zip(inputs, outputs):
-            assert self.solution(**input) == output
-
-    def test_runner(self):
-        raise Exception("test_runner is not implemented yet")
+    def test_runner(self, iteration=1000):
+        try:
+            for _ in range(iteration):
+                self.test_one_random()
+        except:
+            raise Exception("test_runner is not implemented yet")

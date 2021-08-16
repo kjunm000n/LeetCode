@@ -2,7 +2,7 @@
 
 import random
 
-from solutions.interface import *
+from solutions.interface import ProblemInterface
 
 
 class Problem4(ProblemInterface):
@@ -68,7 +68,3 @@ class Problem4(ProblemInterface):
 
         print(answer1, answer2)
         assert answer1 == answer2
-
-    def test_runner(self, iters=10):
-        for i in range(iters):
-            self.test_one_random(list_size = 10, num_size = 100, debug = False)

@@ -8,7 +8,8 @@ if __name__ == '__main__':
     print(f"Problem Number: {problem_number}")
     ap = AllProblems(debug=True)
     prob = ap.get_problem(problem_number=problem_number)
-    # prob.test_one(given_input={'nums1':[6, 16, 26, 26, 27, 51, 58, 78], 'nums2':[10, 22, 49, 54, 63, 77]},
-    #               expected_output=38)
+    # prob.test_one(given_input={'nums':[1,2,3], 'target':3},
+    #               expected_output=[0,1])
+    # prob.test_one_random()
     prob.test_runner()
-
+    #
