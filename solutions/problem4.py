@@ -59,7 +59,7 @@ class Problem4(ProblemInterface):
         nums = sorted(nums1+nums2)
         return self.median(nums)
 
-    def test_one_random(self, list_size = 10, num_size = 100, debug = False):
+    def test_one_random(self, list_size = 10, num_size = 100):
         nums1 = sorted([random.randint(1, num_size) for _ in range(random.randint(1, list_size))])
         nums2 = sorted([random.randint(1, num_size) for _ in range(random.randint(1, list_size))])
 
