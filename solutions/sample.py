@@ -2,7 +2,7 @@
 
 import random
 
-from solutions.interface import *
+from solutions.interface import ProblemInterface
 
 
 class ProblemN(ProblemInterface):
