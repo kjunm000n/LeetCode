@@ -6,7 +6,7 @@ from solutions.allProblems import *
 if __name__ == '__main__':
     problem_number = os.getenv('problem_number')
     print(f"Problem Number: {problem_number}")
-    ap = AllProblems(debug=True)
+    ap = AllProblems(debug=False)
     prob = ap.get_problem(problem_number=problem_number)
     # prob.test_one(given_input={'nums':[1,2,3], 'target':3},
     #               expected_output=[0,1])

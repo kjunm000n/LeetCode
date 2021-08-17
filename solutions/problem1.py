@@ -1,4 +1,4 @@
-# [N] Sample
+# [1] Two Sum
 
 import random
 
