@@ -10,7 +10,7 @@ try:
 except ImportError:
     raise Exception("Import Failed")
 else:
-    del problem_module
+    del problem_modules
 
 class AllProblems:
     def __init__(self, debug=False):
@@ -25,6 +25,6 @@ class AllProblems:
         if module_name not in self.module_dict:
             raise Exception(f"Problem {problem_number} doesn't exists")
         prob_class = getattr(self.module_dict[module_name], class_name)
-        problem = prob_class()
+        problem = prob_class(debug=self.debug)
         self.probs[module_name] = problem
         return problem
