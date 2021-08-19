@@ -3,12 +3,10 @@
 import random
 
 from solutions.interface import ProblemInterface
+from main import debug_mode
 
 
 class Problem4(ProblemInterface):
-    def __init__(self, debug=False):
-        self.debug = debug
-
     def avg(self, nums):
         return sum(nums)/len(nums)
 
@@ -19,11 +17,12 @@ class Problem4(ProblemInterface):
         answer = [num for i, num in enumerate(nums) if i == len(nums)//2 or (len(nums)%2==0 and i == len(nums)//2-1)]
         return answer if with_arr else self.avg(answer)
 
+    @ProblemInterface.time_check(debug_mode)
     def solution(self, nums1, nums2):
         u"""
         time complexity: O(log (m+n))
         """
-        if self.debug:
+        if debug_mode:
             print(f"func({nums1},{nums2})")
 
         if not nums1:
@@ -37,7 +36,7 @@ class Problem4(ProblemInterface):
 
         mid1, mid2 = nums1[len(nums1)//2], nums2[len(nums2)//2]
         skip = max(min(len(nums1) // 2-1, len(nums2) // 2-1), 1)
-        if self.debug:
+        if debug_mode:
             print(f"  mid1:{mid1}, mid2:{mid2}, skip: {skip}")
         if mid1 > mid2:
             next_nums1, next_nums2 = nums1[:-skip], nums2[skip:]
@@ -46,12 +45,13 @@ class Problem4(ProblemInterface):
         elif mid1 < mid2:
             next_nums1, next_nums2 = nums1[skip:], nums2[:-skip]
 
-        if self.debug:
+        if debug_mode:
             print(f"    l1:{len(nums1)}, l2:{len(nums2)} / "
                   f"mid1:{len(next_nums1)}, mid2:{len(next_nums2)}")
 
         return self.solution(next_nums1, next_nums2)
 
+    @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, nums1, nums2):
         u"""
         time complexity: O((m+n) log (m+n))

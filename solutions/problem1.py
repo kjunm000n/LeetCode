@@ -3,12 +3,10 @@
 import random
 
 from solutions.interface import ProblemInterface
-
+from main import debug_mode
 
 class Problem1(ProblemInterface):
-    def __init__(self, debug=False):
-        self.debug = debug
-
+    @ProblemInterface.time_check(debug_mode)
     def solution(self, nums, target):
         u"""
         sort first, and match target values within one iteration.
@@ -35,6 +33,7 @@ class Problem1(ProblemInterface):
                 back_index -= 1
         return answer
 
+    @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, nums, target):
         u"""
         expected time complexity = O(n^2)

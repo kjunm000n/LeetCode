@@ -4,6 +4,7 @@ import random
 from typing import Optional
 
 from solutions.interface import ProblemInterface
+from main import debug_mode
 
 
 class Problem445(ProblemInterface):
@@ -33,15 +34,11 @@ class Problem445(ProblemInterface):
                 else:
                     return self.next.__eq__(other.next)
 
-
-
-    def __init__(self, debug=False):
-        self.debug = debug
-
     def sum_ListNode(self, n1: ListNode, n2: ListNode, carry=0) -> (ListNode, int):
         sum_val = (n1.val + n2.val + carry)
         return self.ListNode(val=sum_val%10), sum_val//10
 
+    @ProblemInterface.time_check(debug_mode)
     def solution(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         s1, s2 = [], []
         curr_node1, curr_node2 = l1, l2
@@ -82,6 +79,7 @@ class Problem445(ProblemInterface):
                 break
         return next_node
 
+    @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         return self.int_to_ListNode((l1.to_int() + l2.to_int()))
 
@@ -95,7 +93,3 @@ class Problem445(ProblemInterface):
         print(f"l1: {l1.to_int()}, l2: {l2.to_int()}, sum: {l1.to_int()+l2.to_int()}")
         print(f"solution: {answer1.to_int()} / comparison_solution: {answer2.to_int()}")
         assert answer1 == answer2
-
-    def test_runner(self, iters=10):
-        for i in range(iters):
-            self.test_one_random()
