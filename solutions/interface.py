@@ -1,3 +1,7 @@
+import time
+import functools
+
+from main import debug_mode
 
 class ProblemInterface:
     def solution(self, *args, **kwargs):
@@ -11,9 +15,23 @@ class ProblemInterface:
         print(f"output: {my_output}")
         assert my_output == expected_output
 
-    def test_runner(self, iteration=1000):
+    def test_runner(self, iteration=10):
         try:
             for _ in range(iteration):
                 self.test_one_random()
         except:
-            raise Exception("test_runner is not implemented yet")
+            raise Exception("test failed")
+
+    @staticmethod
+    def time_check(debug_mode=True):
+        def decorator(func):
+            @functools.wraps(func)
+            def wrapper(*args, **kwargs):
+                st = time.time_ns()
+                return_val = func(*args, **kwargs)
+                et = time.time_ns()
+                if debug_mode:
+                    print(f"{func.__name__} tooks {(et-st)/10**9:.6f}ms")
+                return return_val
+            return wrapper
+        return decorator

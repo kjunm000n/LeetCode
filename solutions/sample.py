@@ -3,15 +3,15 @@
 import random
 
 from solutions.interface import ProblemInterface
+from main import debug_mode
 
 
 class ProblemN(ProblemInterface):
-    def __init__(self, debug=False):
-        self.debug = debug
-
+    @ProblemInterface.time_check(debug_mode)
     def solution(self):
         return None
 
+    # @ProblemInterface.time_check(debug_mode)
     # def comparison_solution(self):
     #     return None
 
@@ -24,4 +24,4 @@ class ProblemN(ProblemInterface):
 
     # def test_runner(self, iters=10):
     #     for i in range(iters):
-    #         self.test_one_random(list_size = 10, num_size = 100)
+    #         self.test_one_random()

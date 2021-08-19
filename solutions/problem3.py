@@ -3,12 +3,9 @@
 import random, string
 
 from solutions.interface import ProblemInterface
-
+from main import debug_mode
 
 class Problem3(ProblemInterface):
-    def __init__(self, debug=False):
-        self.debug = debug
-
     def insert(self, dic, k):
         if k not in dic or dic[k] == 0:
             dic[k] = 1
@@ -25,6 +22,7 @@ class Problem3(ProblemInterface):
         dic[k] -= 1
         return dic[k]
 
+    @ProblemInterface.time_check(debug_mode)
     def solution(self, s):
         s_dict = dict()
         answer, answer_s = 0, ''
@@ -32,23 +30,24 @@ class Problem3(ProblemInterface):
         while back < len(s):
             is_dup = self.insert(s_dict, s[back])
             back += 1
-            if self.debug:
+            if debug_mode:
                 print(front, back, s_dict, is_dup)
             if is_dup:
                 while True:
                     remain = self.remove(s_dict, s[front])
                     front += 1
-                    if self.debug:
+                    if debug_mode:
                         print('  ', front, back, s_dict)
                     if s[back - 1] == s[front - 1] and remain <= 1 or front >= back:
                         break
             if back - front > answer:
                 answer = back - front
                 answer_s = s[front:back]
-                if self.debug:
+                if debug_mode:
                     print(answer_s, answer)
         return answer
 
+    @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, s):
         answer = ''
         for i in range(len(s)):

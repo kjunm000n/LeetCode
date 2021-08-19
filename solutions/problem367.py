@@ -3,12 +3,11 @@
 import random
 
 from solutions.interface import ProblemInterface
+from main import debug_mode
 
 
 class Problem367(ProblemInterface):
-    def __init__(self, debug=False):
-        self.debug = debug
-
+    @ProblemInterface.time_check(debug_mode)
     def solution(self, num: int) -> bool:
         max_sqrt = 2 ** 16
         curr = max_sqrt // 2 - 1
@@ -36,6 +35,3 @@ class Problem367(ProblemInterface):
         print(answer1, answer2)
         assert answer1 == answer2
 
-    def test_runner(self, iters=1000):
-        for i in range(iters):
-            self.test_one_random()
