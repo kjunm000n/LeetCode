@@ -5,7 +5,7 @@ debug_mode = os.getenv('debug_mode') in [1, True]
 problem_number = os.getenv('problem_number')
 skip_probs = [4, ]  # Not solved yet
 
-from solutions.allProblems import *
+from solutions.allProblems import AllProblems
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
