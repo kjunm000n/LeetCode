@@ -25,15 +25,20 @@ if __name__ == '__main__':
 
 def test_all(keep_going=True):
     ap = AllProblems(initialize_all=True, skip_probs=[4])
-    for prob_name, prob in ap.probs.items():
+    passed, failed = [], []
+    for prob_num, prob in ap.probs.items():
         try:
             if debug_mode:
-                print(f"{prob_name} is running")
+                print(f"Problem {prob_num} is running")
             prob.test_runner()
         except:
-            print(f"{prob_name} failed")
+            failed.append(prob_num)
+            print(f"Problem {prob_num} failed")
             if not keep_going:
                 assert False
         else:
+            passed.append(prob_num)
             if debug_mode:
-                print(f"{prob_name} passed")
+                print(f"Problem {prob_num} passed")
+        finally:
+            return passed, failed
