@@ -11,7 +11,7 @@ with open('base.md', 'r') as f_base:
         f_readme.write(base_md)
 
         ap = AllProblems()
-        all_probs = sorted([int(module.replace('problem', '')) for module in ap.module_dict.keys()])
+        all_probs = sorted([problem_number for problem_number in ap.module_dict.keys()])
 
         # Solved
         f_readme.write('\n## Solved\n')
