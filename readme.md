@@ -22,3 +22,15 @@ Personal solutions of LeetCode for algorithm study
 - debug_mode: if it's True or 1, print time elapsed and results.
 - problem_number: if it doesn't exist, then run all tests.
 - ~~skip: specify number of problems to skip.~~
+
+## Solved
+[1](solutions/problem1.py)
+[2](solutions/problem2.py)
+[3](solutions/problem3.py)
+[7](solutions/problem7.py)
+[69](solutions/problem69.py)
+[367](solutions/problem367.py)
+[445](solutions/problem445.py)
+
+## Struggled
+[4](solutions/problem4.py)
