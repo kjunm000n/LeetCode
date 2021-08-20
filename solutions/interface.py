@@ -15,7 +15,7 @@ class ProblemInterface:
         print(f"output: {my_output}")
         assert my_output == expected_output
 
-    def test_runner(self, iteration=10):
+    def test_many_random(self, iteration=10):
         try:
             for _ in range(iteration):
                 self.test_one_random()

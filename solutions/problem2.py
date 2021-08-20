@@ -1,4 +1,4 @@
-# [445] Add Two Numbers 2
+# [2] Add Two Numbers 2
 
 import random
 from typing import Optional
@@ -7,7 +7,7 @@ from solutions.interface import ProblemInterface
 from main import debug_mode
 
 
-class Problem445(ProblemInterface):
+class Problem2(ProblemInterface):
     class ListNode:
         def __init__(self, val=0, next=None):
             self.val = val

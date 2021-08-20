@@ -20,7 +20,7 @@ if __name__ == '__main__':
     # prob.test_one(given_input={'x':[1,2,3], 'target':3},
     #               expected_output=[0,1])
     # prob.test_one_random()
-    # prob.test_runner()
+    # prob.test_many_random()
 
 
 def test_all(keep_going=True):
@@ -30,7 +30,7 @@ def test_all(keep_going=True):
         try:
             if debug_mode:
                 print(f"Problem {prob_num} is running")
-            prob.test_runner()
+            prob.test_many_random()
         except:
             failed.append(prob_num)
             print(f"Problem {prob_num} failed")

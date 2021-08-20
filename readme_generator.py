@@ -1,8 +1,11 @@
 import main
-from main import skip_probs
+from main import skip_probs, debug_mode
 from solutions.allProblems import AllProblems
 
+if debug_mode:
+    print("generating readme.md...")
 with open('base.md', 'r') as f_base:
+
     base_md = f_base.read()
     with open('readme.md', 'w') as f_readme:
         f_readme.write(base_md)
@@ -22,3 +25,6 @@ with open('base.md', 'r') as f_base:
         f_readme.write('\n## Struggled\n')
         for prob_num in skip_probs:
             f_readme.write(f'[{prob_num}](solutions/problem{prob_num}.py)\n')
+
+if debug_mode:
+    print("readme.md was generated")

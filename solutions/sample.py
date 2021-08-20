@@ -22,6 +22,6 @@ class ProblemN(ProblemInterface):
     #     print(answer1, answer2)
     #     assert answer1 == answer2
 
-    # def test_runner(self, iters=10):
+    # def test_many_random(self, iters=10):
     #     for i in range(iters):
     #         self.test_one_random()
