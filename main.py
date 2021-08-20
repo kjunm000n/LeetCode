@@ -9,7 +9,7 @@ from solutions.allProblems import AllProblems
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    problem_number = 7
+    problem_number = 2
     debug_mode = True
     ap = AllProblems()
     prob = ap.get_problem(problem_number=problem_number)
@@ -20,7 +20,7 @@ if __name__ == '__main__':
     # prob.test_one(given_input={'x':[1,2,3], 'target':3},
     #               expected_output=[0,1])
     # prob.test_one_random()
-    # prob.test_many_random()
+    prob.test_many_random()
 
 
 def test_all(keep_going=True):
