@@ -3,13 +3,13 @@ import os, sys
 sys.setrecursionlimit(100000)
 debug_mode = os.getenv('debug_mode') in [1, True]
 problem_number = os.getenv('problem_number')
-skip_probs = [4, ]  # Not solved yet
+skip_probs = [4, 5, ]  # Not solved yet
 
 from solutions.allProblems import AllProblems
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    problem_number = 2
+    problem_number = 214
     debug_mode = True
     ap = AllProblems()
     prob = ap.get_problem(problem_number=problem_number)
@@ -20,7 +20,8 @@ if __name__ == '__main__':
     # prob.test_one(given_input={'x':[1,2,3], 'target':3},
     #               expected_output=[0,1])
     # prob.test_one_random()
-    prob.test_many_random()
+    # prob.test_many_random()
+    prob.test_many_random(iteration=1000)
 
 
 def test_all(keep_going=True):
@@ -28,7 +29,7 @@ def test_all(keep_going=True):
     passed, failed = [], []
     for prob_num, prob in ap.probs.items():
         try:
-            if debug_mode:
+            if os.getenv('debug_mode'):
                 print(f"Problem {prob_num} is running")
             prob.test_many_random()
         except:
@@ -38,7 +39,7 @@ def test_all(keep_going=True):
                 assert False
         else:
             passed.append(prob_num)
-            if debug_mode:
+            if os.getenv('debug_mode'):
                 print(f"Problem {prob_num} passed")
         finally:
             return passed, failed

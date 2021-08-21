@@ -1,5 +1,6 @@
 # [4] Median of Two Sorted Arrays
 
+import os
 import random
 
 from solutions.interface import ProblemInterface
@@ -22,7 +23,7 @@ class Problem4(ProblemInterface):
         u"""
         time complexity: O(log (m+n))
         """
-        if debug_mode:
+        if os.getenv('debug_mode'):
             print(f"func({nums1},{nums2})")
 
         if not nums1:
@@ -36,7 +37,7 @@ class Problem4(ProblemInterface):
 
         mid1, mid2 = nums1[len(nums1)//2], nums2[len(nums2)//2]
         skip = max(min(len(nums1) // 2-1, len(nums2) // 2-1), 1)
-        if debug_mode:
+        if os.getenv('debug_mode'):
             print(f"  mid1:{mid1}, mid2:{mid2}, skip: {skip}")
         if mid1 > mid2:
             next_nums1, next_nums2 = nums1[:-skip], nums2[skip:]
@@ -45,7 +46,7 @@ class Problem4(ProblemInterface):
         elif mid1 < mid2:
             next_nums1, next_nums2 = nums1[skip:], nums2[:-skip]
 
-        if debug_mode:
+        if os.getenv('debug_mode'):
             print(f"    l1:{len(nums1)}, l2:{len(nums2)} / "
                   f"mid1:{len(next_nums1)}, mid2:{len(next_nums2)}")
 

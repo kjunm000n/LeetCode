@@ -7,7 +7,7 @@ def import_problems():
         module_dict = {}
         for problem_module in problem_modules:
             solutions = __import__(f'solutions.{problem_module}')
-            module_dict[int(problem_module.replace('problem',''))] = getattr(solutions, problem_module)
+            module_dict[int(problem_module.replace('problem','').replace('.py',''))] = getattr(solutions, problem_module)
     except ImportError:
         raise Exception("Import Failed")
     else:
