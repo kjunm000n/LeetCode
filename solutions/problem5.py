@@ -1,4 +1,4 @@
-# [5] Sample
+# [5] Longest Palindromic Substring
 
 import random
 import string
@@ -8,19 +8,13 @@ from main import debug_mode
 
 
 class Problem5(ProblemInterface):
-    def is_p(self, s):
-        for i in range(len(s) // 2):
-            print(len(s) - 1 - i, i)
-            if s[-1 - i] != s[i]:
-                return False
-        return True
-
+    @staticmethod
     def is_palindrom(self, s):
         return s[:len(s)//2] == s[:(len(s)-1)//2:-1]
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, s: str) -> str:
-        return None
+        return ''
 
 
     @ProblemInterface.time_check(debug_mode)
@@ -32,8 +26,7 @@ class Problem5(ProblemInterface):
         for i in range(len(s)):
             for j in range(i+1, len(s)+1):
                 curr = s[i:j]
-                if self.is_palindrom(curr):
-                    if len(curr) > len(answer):
+                if self.is_palindrom(curr) and len(curr) > len(answer):
                         answer = curr
         return answer
 

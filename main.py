@@ -9,7 +9,7 @@ from solutions.allProblems import AllProblems
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    problem_number = 214
+    problem_number = 6
     debug_mode = True
     ap = AllProblems()
     prob = ap.get_problem(problem_number=problem_number)
@@ -17,11 +17,14 @@ if __name__ == '__main__':
     # prob.solution(51434)
     # prob.comparison_solution(33251)
     # prob.comparison_solution2(2323)
-    # prob.test_one(given_input={'x':[1,2,3], 'target':3},
-    #               expected_output=[0,1])
+    # prob.test_one(given_input={
+    #                            's': 'PAYPALISHIRING',
+    #                            'numRows': 4,
+    #                           },
+    #               expected_output='PINALSIGYAHRPI')
     # prob.test_one_random()
-    # prob.test_many_random()
-    prob.test_many_random(iteration=1000)
+    prob.test_many_random()
+    # prob.test_many_random(iteration=1000)
 
 
 def test_all(keep_going=True):

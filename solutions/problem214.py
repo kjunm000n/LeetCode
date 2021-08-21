@@ -9,14 +9,8 @@ from main import debug_mode
 
 
 class Problem214(ProblemInterface):
-    def is_p(self, s):
-        for i in range(len(s) // 2):
-            print(len(s) - 1 - i, i)
-            if s[-1 - i] != s[i]:
-                return False
-        return True
-
-    def is_palindrom(self, s):
+    @staticmethod
+    def is_palindrom(s):
         return s[:len(s)//2] == s[:(len(s)-1)//2:-1]
 
     @ProblemInterface.time_check(debug_mode)
