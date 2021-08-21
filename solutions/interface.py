@@ -1,3 +1,4 @@
+import os
 import time
 import functools
 
@@ -30,7 +31,7 @@ class ProblemInterface:
                 st = time.time_ns()
                 return_val = func(*args, **kwargs)
                 et = time.time_ns()
-                if debug_mode:
+                if os.getenv('debug_mode'):
                     print(f"{func.__name__} tooks {(et-st)/10**9:.6f}ms")
                 return return_val
             return wrapper

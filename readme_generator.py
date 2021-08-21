@@ -1,8 +1,9 @@
 import main
 from main import skip_probs, debug_mode
 from solutions.allProblems import AllProblems
+import os
 
-if debug_mode:
+if os.getenv('debug_mode'):
     print("generating readme.md...")
 with open('base.md', 'r') as f_base:
 
@@ -26,5 +27,5 @@ with open('base.md', 'r') as f_base:
         for prob_num in skip_probs:
             f_readme.write(f'[{prob_num}](solutions/problem{prob_num}.py)\n')
 
-if debug_mode:
+if os.getenv('debug_mode'):
     print("readme.md was generated")

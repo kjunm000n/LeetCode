@@ -1,8 +1,8 @@
 # [7] Reverse Integer
 
+import os
 import random
 import time
-import timeit
 
 from solutions.interface import ProblemInterface
 from main import debug_mode
