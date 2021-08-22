@@ -1,5 +1,6 @@
 # [367] Valid Perfect Square
 
+import os
 import random
 
 from solutions.interface import ProblemInterface

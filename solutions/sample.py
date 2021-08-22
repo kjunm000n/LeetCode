@@ -1,5 +1,6 @@
 # [N] Sample
 
+import os
 import random
 
 from solutions.interface import ProblemInterface
@@ -19,9 +20,6 @@ class ProblemN(ProblemInterface):
     #     answer1 = self.solution()
     #     answer2 = self.comparison_solution()
     #
+    #     if os.getenv('debug_mode'):
     #     print(answer1, answer2)
     #     assert answer1 == answer2
-
-    # def test_many_random(self, iters=10):
-    #     for i in range(iters):
-    #         self.test_one_random()

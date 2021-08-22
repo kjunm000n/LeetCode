@@ -1,3 +1,4 @@
+import os
 import time
 import functools
 
@@ -27,11 +28,28 @@ class ProblemInterface:
         def decorator(func):
             @functools.wraps(func)
             def wrapper(*args, **kwargs):
+                if os.getenv('debug_mode'):
+                    func_info = f"{func.__name__} ("
+                    for arg in args:
+                        if type(arg).__name__.startswith('Problem'):
+                            continue
+                        if not getattr(arg, '__repr__', None):
+                            func_info += 'non-str val, '
+                        else:
+                            func_info += str(arg) if len(str(arg)) <= 100 else (str(arg)[:100] + '...') + ', '
+                    for kw, arg in kwargs.items():
+                        func_info += kw + ': ' + arg + ', '
+                    func_info += f")"
+                    print(func_info, end='')
                 st = time.time_ns()
                 return_val = func(*args, **kwargs)
                 et = time.time_ns()
-                if debug_mode:
-                    print(f"{func.__name__} tooks {(et-st)/10**9:.6f}ms")
+                if os.getenv('debug_mode'):
+                    try:
+                        print(f' = {str(return_val) if len(str(return_val)) < 100 else str(return_val)[:100]}')
+                    except:
+                        print(' = output is not str convertable.')
+                    print(f'{func.__name__} tooks {(et-st)/10**9:.6f}ms')
                 return return_val
             return wrapper
         return decorator

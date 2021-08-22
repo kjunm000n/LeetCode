@@ -7,7 +7,7 @@ def import_problems():
         module_dict = {}
         for problem_module in problem_modules:
             solutions = __import__(f'solutions.{problem_module}')
-            module_dict[problem_module] = getattr(solutions, problem_module)
+            module_dict[int(problem_module.replace('problem','').replace('.py',''))] = getattr(solutions, problem_module)
     except ImportError:
         raise Exception("Import Failed")
     else:
@@ -22,14 +22,14 @@ class AllProblems:
             self.get_all_problems(skip_probs=skip_probs)
 
     def get_problem(self, problem_number):
-        module_name, class_name = f'problem{problem_number}', f'Problem{problem_number}'
-        if int(module_name.replace('problem', '')) in self.probs:
+        class_name = f'Problem{problem_number}'
+        if problem_number in self.probs:
             return self.probs['module_name']
-        if int(module_name.replace('problem', '')) not in self.module_dict:
+        if problem_number not in self.module_dict:
             raise Exception(f"Problem {problem_number} doesn't exists")
-        prob_class = getattr(self.module_dict[module_name], class_name)
+        prob_class = getattr(self.module_dict[problem_number], class_name)
         prob_instance = prob_class()
-        self.probs[int(module_name.replace('problem', ''))] = prob_instance
+        self.probs[problem_number] = prob_instance
         return prob_instance
 
     def get_all_problems(self, skip_probs=[]):

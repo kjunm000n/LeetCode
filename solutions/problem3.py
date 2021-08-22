@@ -1,5 +1,6 @@
 # [3] Longest Substring Without Repeating Characters
 
+import os
 import random, string
 
 from solutions.interface import ProblemInterface
@@ -30,20 +31,20 @@ class Problem3(ProblemInterface):
         while back < len(s):
             is_dup = self.insert(s_dict, s[back])
             back += 1
-            if debug_mode:
+            if os.getenv('debug_mode'):
                 print(front, back, s_dict, is_dup)
             if is_dup:
                 while True:
                     remain = self.remove(s_dict, s[front])
                     front += 1
-                    if debug_mode:
+                    if os.getenv('debug_mode'):
                         print('  ', front, back, s_dict)
                     if s[back - 1] == s[front - 1] and remain <= 1 or front >= back:
                         break
             if back - front > answer:
                 answer = back - front
                 answer_s = s[front:back]
-                if debug_mode:
+                if os.getenv('debug_mode'):
                     print(answer_s, answer)
         return answer
 
