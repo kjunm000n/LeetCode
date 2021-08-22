@@ -66,14 +66,18 @@ def main(parsed_args):
 def get_input(inp, ap, prob_num):
     for k, v in inp.items():
         try:
-            inp[k] = eval(v)
-        except NameError:
+            if type(v) == str and '(' in v and ')' in v:
+                inp[k] = eval(v)
+            else:
+                inp[k] = v
+        except (NameError, TypeError):
             try:
                 cls_name, val = v.split('.')[-1].split('(')
                 val = eval(val.replace(')', ''))
                 inp[k] = getattr(getattr(ap.module_dict[prob_num], f'Problem{prob_num}'), cls_name)(val)
             except ImportError:
                 raise ImportError
+    return inp
 
 
 # Press the green button in the gutter to run the script.
