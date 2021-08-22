@@ -1,8 +1,10 @@
 import os
+from typing import Optional, Union, Any, List, Dict
 
 from solutions.interface import TestFailedException
 
-def import_problems(probs, skip_probs):
+
+def import_problems(probs: Optional[List[int]], skip_probs: Optional[List[int]]) -> Dict[int, Any]:  # Dict[int, module]
     try:
         module_dict = {}
         for prob_num in [prob_num for prob_num in probs if prob_num not in skip_probs]:
@@ -14,12 +16,12 @@ def import_problems(probs, skip_probs):
 
 
 class AllProblems:
-    def __init__(self, probs=[], skip_probs=[]):
+    def __init__(self, probs: Optional[List[int]], skip_probs: Optional[List[int]]):
         self.module_dict = import_problems(probs=probs, skip_probs=skip_probs)
         self.probs = {}
         self.get_all_problems()
 
-    def get_problem(self, problem_number):
+    def get_problem(self, problem_number: int) -> Any:  # ProblemN Classes
         class_name = f'Problem{problem_number}'
         if problem_number in self.probs:
             return self.probs[problem_number]
@@ -30,7 +32,7 @@ class AllProblems:
         self.probs[problem_number] = prob_instance
         return prob_instance
 
-    def get_all_problems(self):
+    def get_all_problems(self) -> Any:  # ProblemN Classes
         for proble_number, module in self.module_dict.items():
             class_name = f'Problem{proble_number}'
             prob_class = getattr(module, class_name)
@@ -38,7 +40,7 @@ class AllProblems:
             self.probs[proble_number] = prob_instance
         return self.probs
 
-    def test_all(self, iteration=10, keep_going=True):
+    def test_all(self, iteration=10, keep_going=True) -> (List[int], List[int]):
         passed, failed = [], []
         for prob_num, prob in self.probs.items():
             try:

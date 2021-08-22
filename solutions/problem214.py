@@ -2,7 +2,7 @@
 
 import string
 import random
-from typing import Optional, Union, Any, List
+from typing import Optional, Union, Any, List, Dict
 
 from main import debug_mode
 from solutions.interface import ProblemInterface
@@ -10,7 +10,7 @@ from solutions.interface import ProblemInterface
 
 class Problem214(ProblemInterface):
     @staticmethod
-    def is_palindrom(s):
+    def is_palindrom(s: str) -> bool:
         u""" time complexity: O(n) """
         return s[:len(s)//2] == s[:(len(s)-1)//2:-1]
 

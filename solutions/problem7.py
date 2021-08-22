@@ -1,7 +1,7 @@
 # [7] Reverse Integer
 
 import random
-from typing import Optional, Union, Any, List
+from typing import Optional, Union, Any, List, Dict
 
 from main import debug_mode
 from solutions.interface import ProblemInterface
