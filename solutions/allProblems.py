@@ -16,7 +16,7 @@ def import_problems(probs: Optional[List[int]], skip_probs: Optional[List[int]])
 
 
 class AllProblems:
-    def __init__(self, probs: Optional[List[int]], skip_probs: Optional[List[int]]):
+    def __init__(self, probs: Optional[List[int]] = None, skip_probs: Optional[List[int]] = None):
         self.module_dict = import_problems(probs=probs, skip_probs=skip_probs)
         self.probs = {}
         self.get_all_problems()
