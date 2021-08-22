@@ -1,11 +1,10 @@
 # [445] Add Two Numbers 2
 
-import os
 import random
-from typing import Optional
+from typing import Optional, Union, Any
 
-from solutions.interface import ProblemInterface
 from main import debug_mode
+from solutions.interface import ProblemInterface
 
 
 class Problem445(ProblemInterface):
@@ -15,14 +14,6 @@ class Problem445(ProblemInterface):
             self.next = next
             if not 0 <= val <= 9:
                 raise ValueError
-
-        def to_int(self):
-            sum_val = self.val
-            next_node = self.next
-            while next_node:
-                sum_val = sum_val*10 + next_node.val
-                next_node = next_node.next
-            return sum_val
 
         def __eq__(self, other):
             if self.val != other.val:
@@ -35,12 +26,17 @@ class Problem445(ProblemInterface):
                 else:
                     return self.next.__eq__(other.next)
 
+        def __repr__(self):
+            return str(self.val) + self.next.__repr__() if self.next else ''
+
     def sum_ListNode(self, n1: ListNode, n2: ListNode, carry=0) -> (ListNode, int):
+        u""" time complexity: O(1) """
         sum_val = (n1.val + n2.val + carry)
         return self.ListNode(val=sum_val%10), sum_val//10
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        u""" time complexity: O(n) """
         s1, s2 = [], []
         curr_node1, curr_node2 = l1, l2
         while curr_node1 is not None or curr_node2 is not None:
@@ -70,6 +66,7 @@ class Problem445(ProblemInterface):
         return next_node
 
     def int_to_ListNode(self, val):
+        u""" time complexity: O(n) """
         next_node = None
         while True:
             prev_node = self.ListNode(val=val%10)
@@ -80,9 +77,19 @@ class Problem445(ProblemInterface):
                 break
         return next_node
 
+    def ListNode_to_int(self, curr_node):
+        u""" time complexity: O(n) """
+        sum_val = curr_node.val
+        next_node = curr_node.next
+        while next_node:
+            sum_val = sum_val * 10 + next_node.val
+            next_node = next_node.next
+        return sum_val
+
     @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        return self.int_to_ListNode((l1.to_int() + l2.to_int()))
+        u""" time complexity: O(n) """
+        return self.int_to_ListNode((self.ListNode_to_int(l1) + self.ListNode_to_int(l2)))
 
     def test_one_random(self, max_list_length=10):
         l1 = self.int_to_ListNode(random.randint(1, 10**random.randint(1, max_list_length + 1) + 1))
@@ -91,6 +98,4 @@ class Problem445(ProblemInterface):
         answer1 = self.solution(l1, l2)
         answer2 = self.comparison_solution(l1, l2)
 
-        print(f"l1: {l1.to_int()}, l2: {l2.to_int()}, sum: {l1.to_int()+l2.to_int()}")
-        print(f"solution: {answer1.to_int()} / comparison_solution: {answer2.to_int()}")
         assert answer1 == answer2

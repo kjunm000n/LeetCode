@@ -1,43 +1,56 @@
-import os, sys
+import os
 
+from solutions.interface import TestFailedException
 
-def import_problems():
+def import_problems(probs, skip_probs):
     try:
-        problem_modules = [module[:-3] for module in os.listdir(os.path.dirname(__file__)) if module.startswith('problem')]
         module_dict = {}
-        for problem_module in problem_modules:
-            solutions = __import__(f'solutions.{problem_module}')
-            module_dict[int(problem_module.replace('problem','').replace('.py',''))] = getattr(solutions, problem_module)
+        for prob_num in [prob_num for prob_num in probs if prob_num not in skip_probs]:
+            solutions = __import__(f'solutions.problem{prob_num}')
+            module_dict[prob_num] = getattr(solutions, f'problem{prob_num}')
     except ImportError:
-        raise Exception("Import Failed")
-    else:
-        del problem_modules
+        raise ImportError
     return module_dict
 
+
 class AllProblems:
-    def __init__(self, initialize_all=False, skip_probs=[]):
-        self.module_dict = import_problems()
+    def __init__(self, probs=[], skip_probs=[]):
+        self.module_dict = import_problems(probs=probs, skip_probs=skip_probs)
         self.probs = {}
-        if initialize_all:
-            self.get_all_problems(skip_probs=skip_probs)
+        self.get_all_problems(all_probs=probs, skip_probs=skip_probs)
 
     def get_problem(self, problem_number):
         class_name = f'Problem{problem_number}'
         if problem_number in self.probs:
-            return self.probs['module_name']
+            return self.probs[problem_number]
         if problem_number not in self.module_dict:
-            raise Exception(f"Problem {problem_number} doesn't exists")
+            raise ModuleNotFoundError
         prob_class = getattr(self.module_dict[problem_number], class_name)
         prob_instance = prob_class()
         self.probs[problem_number] = prob_instance
         return prob_instance
 
-    def get_all_problems(self, skip_probs=[]):
-        for module_name, module in self.module_dict.items():
-            if int(module_name.replace('problem', '')) in skip_probs:
-                continue
-            class_name = module_name.replace('problem','Problem')
+    def get_all_problems(self):
+        for proble_number, module in self.module_dict.items():
+            class_name = f'Problem{proble_number}'
             prob_class = getattr(module, class_name)
             prob_instance = prob_class()
-            self.probs[int(module_name.replace('problem', ''))] = prob_instance
+            self.probs[proble_number] = prob_instance
         return self.probs
+
+    def test_all(self, iteration=10, keep_going=True):
+        passed, failed = [], []
+        for prob_num, prob in self.probs.items():
+            try:
+                print(f"Problem {prob_num} is running")
+                prob.test_many_random(iteration=iteration)
+            except TestFailedException:
+                failed.append(prob_num)
+                print(f"Problem {prob_num} failed")
+                if not keep_going:
+                    assert False
+            else:
+                passed.append(prob_num)
+                print(f"Problem {prob_num} passed")
+        print(f"Pass: {passed} / Fail: {failed}")
+        return passed, failed
