@@ -8,7 +8,6 @@ from solutions.interface import ProblemInterface
 
 
 class Problem13(ProblemInterface):
-
     @ProblemInterface.time_check(debug_mode)
     def solution(self, s: str) -> int:
         u""" time complexity: O(1) """
@@ -24,6 +23,7 @@ class Problem13(ProblemInterface):
 
     @staticmethod
     def generate_Roman(digit: int, char1: str, char5: str, char10: str) -> str:
+        u""" time complexity: O(1) """
         if digit == 9:
             return char1 + char10
         elif digit == 4:
