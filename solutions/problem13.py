@@ -1,4 +1,4 @@
-# [12] Integer to Roman
+# [13] Roman to Integer
 
 import random
 from typing import Optional, Union, Any, List, Dict
@@ -7,7 +7,21 @@ from main import debug_mode
 from solutions.interface import ProblemInterface
 
 
-class Problem12(ProblemInterface):
+class Problem13(ProblemInterface):
+
+    @ProblemInterface.time_check(debug_mode)
+    def solution(self, s: str) -> int:
+        u""" time complexity: O(1) """
+        answer = 0
+        roman_dict = {'I': 1, 'IV': 4, 'V': 5, 'IX': 9, 'X': 10, 'XL': 40, 'L': 50, 'XC': 90, 'C': 100, 'CD': 400,
+                      'D': 500, 'CM': 900, 'M': 1000}
+        parse_order = ['M', 'CM', 'CD', 'D', 'C', 'XC', 'XL', 'L', 'X', 'IX', 'IV', 'V', 'I']
+        for symbol in parse_order:
+            while s.startswith(symbol):
+                answer += roman_dict[symbol]
+                s = s[len(symbol):]
+        return answer
+
     @staticmethod
     def generate_Roman(digit: int, char1: str, char5: str, char10: str) -> str:
         if digit == 9:
@@ -19,8 +33,7 @@ class Problem12(ProblemInterface):
         elif digit > 4:
             return char5 + char1 * (digit - 5)
 
-    @ProblemInterface.time_check(debug_mode)
-    def solution(self, num: int) -> str:
+    def int_to_Roman(self, num: int) -> str:
         u""" time complexity: O(1) """
         answer = ''
         digit4 = num // 1000
@@ -38,27 +51,16 @@ class Problem12(ProblemInterface):
         return answer
 
     @ProblemInterface.time_check(debug_mode)
-    def Roman_to_int(self, s: str) -> int:
+    def comparison_solution(self, s: str) -> int:
         u""" time complexity: O(1) """
-        answer = 0
-        roman_dict = {'I': 1, 'IV': 4, 'V': 5, 'IX': 9, 'X': 10, 'XL': 40, 'L': 50, 'XC': 90, 'C': 100, 'CD': 400,
-                      'D': 500, 'CM': 900, 'M': 1000}
-        parse_order = ['M', 'CM', 'CD', 'D', 'C', 'XC', 'XL', 'L', 'X', 'IX', 'IV', 'V', 'I']
-        for symbol in parse_order:
-            while s.startswith(symbol):
-                answer += roman_dict[symbol]
-                s = s[len(symbol):]
-        return answer
-
-    @ProblemInterface.time_check(debug_mode)
-    def comparison_solution(self, num: int) -> str:
-        u""" time complexity: O(1) """
-        return self.solution(num)
+        return self.solution(s)
 
     def test_one_random(self, num_size=3999):
-        n = random.randint(1,3999)
-        answer1 = self.solution(n)
+        n = random.randint(1, 3999)
+        s = self.int_to_Roman(n)
+
+        answer1 = self.solution(s)
 
         if debug_mode:
-           print(answer1, answer1)
-        assert n == self.Roman_to_int(answer1)
+            print(answer1, answer1)
+        assert answer1 == n
