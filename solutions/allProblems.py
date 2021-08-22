@@ -17,7 +17,7 @@ class AllProblems:
     def __init__(self, probs=[], skip_probs=[]):
         self.module_dict = import_problems(probs=probs, skip_probs=skip_probs)
         self.probs = {}
-        self.get_all_problems(all_probs=probs, skip_probs=skip_probs)
+        self.get_all_problems()
 
     def get_problem(self, problem_number):
         class_name = f'Problem{problem_number}'

@@ -46,6 +46,8 @@ optional arguments:
 [3](solutions/problem3.py)
 [6](solutions/problem6.py)
 [7](solutions/problem7.py)
+[9](solutions/problem9.py)
+[11](solutions/problem11.py)
 [69](solutions/problem69.py)
 [214](solutions/problem214.py)
 [367](solutions/problem367.py)
