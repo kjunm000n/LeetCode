@@ -1,48 +1,96 @@
-import os, sys
+u"""
+    Run Solution for LeetCode Problems
+"""
+import os
+import sys
+import argparse
 
 sys.setrecursionlimit(100000)
-debug_mode = os.getenv('debug_mode') in [1, True]
-problem_number = os.getenv('problem_number')
-skip_probs = [4, 5, ]  # Not solved yet
+
+
+# Parsing
+def create_parser(initial_call=False):
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('-p', '--problems', nargs='*', default=[], type=int,
+                            help="This is problems to run. To run with input, only single problem should be entered."
+                                 "\n If it's not set, then run random tests with all problem.")
+    arg_parser.add_argument('-i', '--inputs', nargs='*', default=[], type=eval,
+                            help="Each input should be form of dictionary."
+                                 "If inputs are not set, random testcases will be run.\n"
+                                 "ex) {'x':1234,'y':'c'} {'x':{'t':3},'y':'ac'}")
+    arg_parser.add_argument('-o', '--outputs', nargs='*', default=[], type=eval,
+                            help="Outputs should be matched with each inputs.\n"
+                                 "ex) 1234 'xyz' {'x':31,'y':'qa'}")
+    arg_parser.add_argument('-n', '--num', type=int, default=10,
+                            help="The number of random test to run. Default value is 10 per each problem.")
+    arg_parser.add_argument('-l', '--list', nargs='?', const=True, default=False, help="list available problems")
+    if initial_call:
+        arg_parser.add_argument('-d', '--debug_mode', nargs='?', const=True, help="print elapsed time and results.")
+        arg_parser.add_argument('-s', '--skips', nargs='*', default=[], type=int,
+                                help="Specify problems to skip, when test all.")
+    arg_parser.add_argument('-e', '--exit', nargs='?', const=True, default=False, help="exit program")
+    return arg_parser
+
+
+parser = create_parser(initial_call=True)
+args = parser.parse_args()
+debug_mode = args.debug_mode is not None
+
+# Getting Problems Info
+all_probs = sorted([int(module[7:-3]) for module in os.listdir('solutions') if module.startswith('problem')])
+struggled_probs = [4, 5, ]  # Not solved yet
+skip_probs = args.skips
+skip_probs = list(set(struggled_probs + skip_probs))
 
 from solutions.allProblems import AllProblems
 
+
+def main(parsed_args):
+    ap = AllProblems(probs=parsed_args.problems or all_probs, skip_probs=skip_probs)
+    if parsed_args.problems:
+        if parsed_args.inputs:
+            prob = ap.get_problem(problem_number=parsed_args.problems[0])
+            for i, inp in enumerate(parsed_args.inputs):
+                if parsed_args.outputs:
+                    prob.test_one(given_input=get_input(inp, ap, parsed_args.problems[0]),
+                                  expected_output=parsed_args.outputs[i])
+                else:
+                    prob.solution(**get_input(inp, ap, parsed_args.problems[0]))
+        else:
+            for prob_num in parsed_args.problems:
+                ap.get_problem(problem_number=prob_num).test_many_random(iteration=parsed_args.num)
+    else:
+        ap.test_all(iteration=parsed_args.num)
+
+
+def get_input(inp, ap, prob_num):
+    for k, v in inp.items():
+        try:
+            inp[k] = eval(v)
+        except NameError:
+            try:
+                cls_name, val = v.split('.')[-1].split('(')
+                val = eval(val.replace(')', ''))
+                inp[k] = getattr(getattr(ap.module_dict[prob_num], f'Problem{prob_num}'), cls_name)(val)
+            except ImportError:
+                raise ImportError
+
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    problem_number = 6
-    debug_mode = True
-    ap = AllProblems()
-    prob = ap.get_problem(problem_number=problem_number)
-    print(f"Problem Number: {problem_number}")
-    # prob.solution(51434)
-    # prob.comparison_solution(33251)
-    # prob.comparison_solution2(2323)
-    # prob.test_one(given_input={
-    #                            's': 'PAYPALISHIRING',
-    #                            'numRows': 4,
-    #                           },
-    #               expected_output='PINALSIGYAHRPI')
-    # prob.test_one_random()
-    prob.test_many_random()
-    # prob.test_many_random(iteration=1000)
-
-
-def test_all(keep_going=True):
-    ap = AllProblems(initialize_all=True, skip_probs=[4])
-    passed, failed = [], []
-    for prob_num, prob in ap.probs.items():
-        try:
-            if os.getenv('debug_mode'):
-                print(f"Problem {prob_num} is running")
-            prob.test_many_random()
-        except:
-            failed.append(prob_num)
-            print(f"Problem {prob_num} failed")
-            if not keep_going:
-                assert False
-        else:
-            passed.append(prob_num)
-            if os.getenv('debug_mode'):
-                print(f"Problem {prob_num} passed")
-        finally:
-            return passed, failed
+    num_run = 0
+    while True:
+        if args.list:
+            print(f'Available Problems: {all_probs}')
+            sys.exit(0)
+        if args.exit:
+            sys.exit(0)
+        if args.inputs and len(args.problems) >= 2:
+            raise ValueError
+        if args.outputs and len(args.inputs) != len(args.outputs):
+            raise ValueError
+        if not set(args.problems).issubset(set(all_probs)):
+            raise ValueError
+        main(args)
+        input_str = input().split()
+        args = create_parser().parse_args(args=input_str)

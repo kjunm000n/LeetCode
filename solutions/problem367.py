@@ -1,15 +1,16 @@
 # [367] Valid Perfect Square
 
-import os
 import random
+from typing import Optional, Union, Any
 
-from solutions.interface import ProblemInterface
 from main import debug_mode
+from solutions.interface import ProblemInterface
 
 
 class Problem367(ProblemInterface):
     @ProblemInterface.time_check(debug_mode)
     def solution(self, num: int) -> bool:
+        u""" time complexity: O(log(n)) """
         max_sqrt = 2 ** 16
         curr = max_sqrt // 2 - 1
         step_size = max_sqrt // 4
@@ -25,6 +26,7 @@ class Problem367(ProblemInterface):
             step_size //= 2
 
     def comparison_solution(self, x: int) -> bool:
+        u""" time complexity: O(1) """
         from math import sqrt
         return int(sqrt(x)) ** 2 == x
 

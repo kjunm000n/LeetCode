@@ -1,27 +1,28 @@
 # [5] Longest Palindromic Substring
 
-import random
 import string
+import random
+from typing import Optional, Union, Any
 
-from solutions.interface import ProblemInterface
 from main import debug_mode
+from solutions.interface import ProblemInterface
 
 
 class Problem5(ProblemInterface):
     @staticmethod
     def is_palindrom(self, s):
+        u""" time complexity: O(n) """
         return s[:len(s)//2] == s[:(len(s)-1)//2:-1]
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, s: str) -> str:
+        u""" time complexity: O() """
         return ''
 
 
     @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, s: str) -> str:
-        u"""
-        time complexity : O(n^2)
-        """
+        u""" time complexity: O(n^2) """
         answer = ''
         for i in range(len(s)):
             for j in range(i+1, len(s)+1):

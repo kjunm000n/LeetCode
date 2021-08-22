@@ -1,15 +1,16 @@
 # [69] Sqrt(x)
 
-import os
 import random
+from typing import Optional, Union, Any
 
-from solutions.interface import ProblemInterface
 from main import debug_mode
+from solutions.interface import ProblemInterface
 
 
 class Problem69(ProblemInterface):
     @ProblemInterface.time_check(debug_mode)
     def solution(self, x: int) -> int:
+        u""" time complexity: O(log(n)) """
         max_sqrt = 2 ** 16
         curr = max_sqrt // 2 - 1
         step_size = max_sqrt // 4
@@ -26,6 +27,7 @@ class Problem69(ProblemInterface):
 
     @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, x: int) -> int:
+        u""" time complexity: O(1) """
         from math import sqrt
         return int(sqrt(x))
 

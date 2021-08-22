@@ -1,9 +1,9 @@
 import main
-from main import skip_probs, debug_mode
+from main import all_probs, struggled_probs, debug_mode
 from solutions.allProblems import AllProblems
 import os
 
-if os.getenv('debug_mode'):
+if debug_mode:
     print("generating readme.md...")
 with open('base.md', 'r') as f_base:
 
@@ -12,20 +12,16 @@ with open('base.md', 'r') as f_base:
         f_readme.write(base_md)
 
         ap = AllProblems()
-        all_probs = sorted([problem_number for problem_number in ap.module_dict.keys()])
 
         # Solved
         f_readme.write('\n## Solved\n')
-        for prob_num in all_probs:
-            if prob_num in skip_probs:
-                continue
-            else:
-                f_readme.write(f'[{prob_num}](solutions/problem{prob_num}.py)\n')
+        for prob_num in filter(lambda x: x not in struggled_probs, all_probs):
+            f_readme.write(f'[{prob_num}](solutions/problem{prob_num}.py)\n')
 
         # Struggled
         f_readme.write('\n## Struggled\n')
-        for prob_num in skip_probs:
+        for prob_num in struggled_probs:
             f_readme.write(f'[{prob_num}](solutions/problem{prob_num}.py)\n')
 
-if os.getenv('debug_mode'):
+if debug_mode:
     print("readme.md was generated")

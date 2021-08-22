@@ -1,16 +1,17 @@
 # [7] Reverse Integer
 
-import os
 import random
-import time
+from typing import Optional, Union, Any
 
-from solutions.interface import ProblemInterface
 from main import debug_mode
+from solutions.interface import ProblemInterface
+
 
 
 class Problem7(ProblemInterface):
     @ProblemInterface.time_check(debug_mode)
-    def get_reverse(self, x: int, digit=0) -> int:
+    def get_reverse(self, x: int, digit=0) -> (int, int):
+        u""" time complexity: O(n) """
         if x < 0:
             answer = list(self.get_reverse(-x))
             answer[0] = -1 * answer[0]
@@ -24,11 +25,13 @@ class Problem7(ProblemInterface):
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, x: int) -> int:
-        answer =  self.get_reverse(x)[0]
+        u""" time complexity: O(n) """
+        answer = self.get_reverse(x)[0]
         return answer if -(2 ** 31) <= answer < 2 ** 31 else 0
 
     @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, x: int) -> int:
+        u""" time complexity: O(n) """
         if x < 0:
             return -self.comparison_solution(-x)
         else:
@@ -37,6 +40,7 @@ class Problem7(ProblemInterface):
 
     @ProblemInterface.time_check(debug_mode)
     def comparison_solution2(self, x: int) -> int:
+        u""" time complexity: O(n) """
         if x < 0:
             return -self.comparison_solution2(-x)
         else:

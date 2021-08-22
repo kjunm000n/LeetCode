@@ -1,25 +1,28 @@
 # [1] Two Sum
 
-import os
 import random
+from typing import Optional, Union, Any
 
-from solutions.interface import ProblemInterface
 from main import debug_mode
+from solutions.interface import ProblemInterface
+
 
 class Problem1(ProblemInterface):
-    @ProblemInterface.time_check(debug_mode)
-    def solution(self, nums, target):
-        u"""
-        sort first, and match target values within one iteration.
-        expected time complexity = O(nlogn)
-        """
-        answer = []
+    def get_num_dict(self, nums):
+        u"""save indexes for each value / time complexity: O(n) """
         num_dict = dict()
         for i, num in enumerate(nums):
             if num in num_dict:
                 num_dict[num].append(i)
             else:
                 num_dict[num] = [i]
+        return num_dict
+
+    @ProblemInterface.time_check(debug_mode)
+    def solution(self, nums, target):
+        u""" time complexity: O(nlog(n)) """
+        answer = []
+        num_dict = self.get_num_dict(nums)
         nums = sorted(nums)
         back_index = len(nums) - 1
         for front_index, num in enumerate(nums):
@@ -36,9 +39,7 @@ class Problem1(ProblemInterface):
 
     @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, nums, target):
-        u"""
-        expected time complexity = O(n^2)
-        """
+        u""" time complexity: O(n^2) """
         for i, num1 in enumerate(nums):
             for j in range(i+1, len(nums)):
                 num2 = nums[j]

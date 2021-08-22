@@ -1,23 +1,22 @@
 # [214] Shortest Palindrome
 
-import os
-import random
 import string
+import random
+from typing import Optional, Union, Any
 
-from solutions.interface import ProblemInterface
 from main import debug_mode
+from solutions.interface import ProblemInterface
 
 
 class Problem214(ProblemInterface):
     @staticmethod
     def is_palindrom(s):
+        u""" time complexity: O(n) """
         return s[:len(s)//2] == s[:(len(s)-1)//2:-1]
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, s: str) -> str:
-        u"""
-        time complexity : O(n^2)
-        """
+        u"""time complexity: O(n^2)"""
         for i in range(len(s), 0, -1):
             if self.is_palindrom(s[:i]):
                 return s[len(s) - 1:i - 1:-1] + s[:i] + s[i:]
@@ -26,9 +25,7 @@ class Problem214(ProblemInterface):
 
     @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, s: str) -> str:
-        u"""
-        time complexity : O(n^2)
-        """
+        u""" time complexity: O(n^2) """
         for i in range(len(s)-1,-1,-1):
             if self.is_palindrom(s[:i:-1]+s):
                 return s[:i:-1]+s
@@ -41,7 +38,7 @@ class Problem214(ProblemInterface):
         answer1 = self.solution(s)
         answer2 = self.comparison_solution(s)
 
-        if os.getenv('debug_mode'):
+        if debug_mode:
             print(f"input: {s}")
             print(len(answer1), answer1)
             print(len(answer2), answer2)

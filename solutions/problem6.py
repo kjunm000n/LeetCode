@@ -1,16 +1,17 @@
 # [6] ZigZag Conversion
 
-import os
-import random
 import string
+import random
+from typing import Optional, Union, Any
 
-from solutions.interface import ProblemInterface
 from main import debug_mode
+from solutions.interface import ProblemInterface
 
 
 class Problem6(ProblemInterface):
     @ProblemInterface.time_check(debug_mode)
     def solution(self, s: str, numRows: int) -> str:
+        u""" time complexity: O(n) """
         answer = ''
         if numRows == 1:
             return s
@@ -27,7 +28,8 @@ class Problem6(ProblemInterface):
 
     @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, s: str, numRows: int) -> str:
-        line_dict = {i:[] for i in range(numRows)}
+        u""" time complexity: O(n) """
+        line_dict = {i: [] for i in range(numRows)}
         for i, c in enumerate(s):
             line = min(i%((numRows-1)*2), ((numRows-1)*2)-i%((numRows-1)*2))
             line_dict[line].append(c)
@@ -44,6 +46,6 @@ class Problem6(ProblemInterface):
         answer1 = self.solution(s, numRows)
         answer2 = self.comparison_solution(s, numRows)
 
-        if os.getenv('debug_mode'):
+        if debug_mode:
             print(answer1, answer2)
         assert answer1 == answer2
