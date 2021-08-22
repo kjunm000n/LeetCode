@@ -2,14 +2,14 @@
 
 import string
 import random
-from typing import Optional, Union, Any, List
+from typing import Optional, Union, Any, List, Dict
 
 from main import debug_mode
 from solutions.interface import ProblemInterface
 
 
 class Problem3(ProblemInterface):
-    def insert(self, dic, k):
+    def insert(self, dic: Dict[str, int], k: str) -> bool:
         u""" time complexity: O(1) """
         if k not in dic or dic[k] == 0:
             dic[k] = 1
@@ -20,7 +20,7 @@ class Problem3(ProblemInterface):
         else:
             raise ValueError
 
-    def remove(self, dic, k):
+    def remove(self, dic: Dict[str, int], k: str) -> int:
         u""" time complexity: O(1) """
         if k not in dic or dic[k] < 1:
             raise ValueError
@@ -28,7 +28,7 @@ class Problem3(ProblemInterface):
         return dic[k]
 
     @ProblemInterface.time_check(debug_mode)
-    def solution(self, s):
+    def solution(self, s: str) -> int:
         u""" time complexity: O(n) """
         char_dict = dict()
         answer = 0
@@ -47,7 +47,7 @@ class Problem3(ProblemInterface):
         return answer
 
     @ProblemInterface.time_check(debug_mode)
-    def comparison_solution(self, s):
+    def comparison_solution(self, s: str) -> int:
         u""" time complexity: O(n^2) """
         answer = ''
         for i in range(len(s)):

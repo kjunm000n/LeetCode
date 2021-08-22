@@ -1,7 +1,7 @@
-# [N] Sample
+# [11] Container With Most Water
 import itertools
 import random
-from typing import Optional, Union, Any, List
+from typing import Optional, Union, Any, List, Dict
 
 from main import debug_mode
 from solutions.interface import ProblemInterface
@@ -58,7 +58,7 @@ class Problem11(ProblemInterface):
         return answer
 
     @staticmethod
-    def get_area(front_info, back_info):
+    def get_area(front_info: List[int], back_info: List[int]):
         return (back_info[0] - front_info[0]) * min(front_info[1], back_info[1])
 
     @ProblemInterface.time_check(debug_mode)

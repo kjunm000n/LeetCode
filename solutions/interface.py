@@ -1,15 +1,16 @@
 import time
 import functools
+from typing import Optional, Union, Any, List, Dict
 
 
 class ProblemInterface:
     def solution(self, *args, **kwargs):
         raise NotImplementedError
 
-    def comparison_solution(self, nums1, nums2):
+    def comparison_solution(self, *args, **kwargs):
         raise NotImplementedError
 
-    def test_one(self, given_input, expected_output):
+    def test_one(self, given_input: Dict[str, Any], expected_output: Any):
         my_output = self.solution(**given_input)
         print(f"output: {my_output}")
         assert my_output == expected_output
