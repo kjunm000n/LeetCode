@@ -39,3 +39,24 @@ optional arguments:
   -e [EXIT], --exit [EXIT]
                         exit program
 ```
+
+## Solved
+[1](solutions/problem1.py)
+[2](solutions/problem2.py)
+[3](solutions/problem3.py)
+[6](solutions/problem6.py)
+[7](solutions/problem7.py)
+[9](solutions/problem9.py)
+[11](solutions/problem11.py)
+[12](solutions/problem12.py)
+[13](solutions/problem13.py)
+[14](solutions/problem14.py)
+[15](solutions/problem15.py)
+[69](solutions/problem69.py)
+[214](solutions/problem214.py)
+[367](solutions/problem367.py)
+[445](solutions/problem445.py)
+
+## Struggled
+[4](solutions/problem4.py)
+[5](solutions/problem5.py)
