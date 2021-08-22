@@ -9,7 +9,7 @@ with open('base.md', 'r') as f_base:
     with open('readme.md', 'w') as f_readme:
         f_readme.write(base_md)
 
-        ap = AllProblems(all_probs=all_probs, struggled_probs=struggled_probs)
+        ap = AllProblems(probs=all_probs, struggled_probs=struggled_probs)
 
         # Solved
         f_readme.write('\n## Solved\n')
