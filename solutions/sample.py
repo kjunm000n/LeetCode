@@ -22,6 +22,4 @@ class ProblemN(ProblemInterface):
     #     answer1 = self.solution()
     #     answer2 = self.comparison_solution()
     #
-    #     if debug_mode:
-    #        print(answer1, answer2)
     #     assert answer1 == answer2
