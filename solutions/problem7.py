@@ -4,10 +4,12 @@ import random
 from typing import Optional, Union, Any, List, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem7(ProblemInterface):
+    difficulty = Difficulty.Easy
+
     @ProblemInterface.time_check(debug_mode)
     def get_reverse(self, x: int, digit=0) -> (int, int):
         u""" time complexity: O(n) """

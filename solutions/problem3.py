@@ -5,10 +5,12 @@ import random
 from typing import Optional, Union, Any, List, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem3(ProblemInterface):
+    difficulty = Difficulty.Medium
+
     def insert(self, dic: Dict[str, int], k: str) -> bool:
         u""" time complexity: O(1) """
         if k not in dic or dic[k] == 0:

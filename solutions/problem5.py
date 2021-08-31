@@ -5,10 +5,12 @@ import random
 from typing import Optional, Union, Any, List, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem5(ProblemInterface):
+    difficulty = Difficulty.Easy
+
     @staticmethod
     def is_palindrom(self, s: str) -> bool:
         u""" time complexity: O(n) """
