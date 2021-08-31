@@ -4,10 +4,12 @@ import random
 from typing import Optional, Union, Any, List, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem4(ProblemInterface):
+    difficulty = Difficulty.Hard
+
     @staticmethod
     def avg(self, nums: List[int]) -> int:
         u""" time complexity: O(1) """

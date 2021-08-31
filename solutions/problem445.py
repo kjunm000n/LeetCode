@@ -4,10 +4,12 @@ import random
 from typing import Optional, Union, Any, List, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem445(ProblemInterface):
+    difficulty = Difficulty.Medium
+
     class ListNode:
         def __init__(self, val=0, next=None):
             self.val = val

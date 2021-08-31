@@ -1,6 +1,7 @@
 import time
 import functools
 from typing import Optional, Union, Any, List, Dict
+from enum import Enum
 
 
 class ProblemInterface:
@@ -49,7 +50,7 @@ class ProblemInterface:
 
     @staticmethod
     def print_func_runtime(func_name, st, et):
-        print(f'{func_name} took {(et-st)/10**9:.6f}ms')
+        print(f'{func_name} took {(et - st) / 10 ** 9:.6f}ms')
 
     @staticmethod
     def time_check(debug_mode=True):
@@ -65,7 +66,9 @@ class ProblemInterface:
                     ProblemInterface.print_func_output(return_val)
                     ProblemInterface.print_func_runtime(func.__name__, st, et)
                 return return_val
+
             return wrapper
+
         return decorator
 
 
@@ -75,3 +78,9 @@ class TestFailedException(Exception):
 
     def __str__(self):
         return self.value
+
+
+class Difficulty(Enum):
+    Easy = 0
+    Medium = 1
+    Hard = 2

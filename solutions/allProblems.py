@@ -1,7 +1,7 @@
 import os
 from typing import Optional, Union, Any, List, Dict
 
-from solutions.interface import TestFailedException
+from solutions.interface import TestFailedException, Difficulty
 
 
 def import_problems(probs: Optional[List[int]], skip_probs: Optional[List[int]]) -> Dict[int, Any]:  # Dict[int, module]
@@ -56,3 +56,17 @@ class AllProblems:
                 print(f"Problem {prob_num} passed")
         print(f"Pass: {passed} / Fail: {failed}")
         return passed, failed
+
+    def divide_by_difficulty(self) -> Dict[str, List[int]]:
+        easy, medium, hard = [], [], []
+        for prob_num, prob in self.probs.items():
+            if prob.difficulty == Difficulty.Easy:
+                easy.append(prob_num)
+            elif prob.difficulty == Difficulty.Medium:
+                medium.append(prob_num)
+            elif prob.difficulty == Difficulty.Hard:
+                hard.append(prob_num)
+            else:
+                raise ValueError
+        difficulty_dict = {'Easy': easy, 'Medium': medium, 'Hard': hard}
+        return difficulty_dict

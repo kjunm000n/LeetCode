@@ -4,10 +4,13 @@ import random
 from typing import Optional, Union, Any, List, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem1(ProblemInterface):
+    difficulty = Difficulty.Easy
+
+
     def get_num_dict(self, nums: List[int]) -> Dict[int, List[int]]:
         u"""save indexes for each value / time complexity: O(n) """
         num_dict = dict()
