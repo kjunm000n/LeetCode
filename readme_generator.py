@@ -13,7 +13,7 @@ with open('base.md', 'r') as f_base:
         difficulty_dict = ap.divide_by_difficulty()
 
         # Solved
-        f_readme.write('\n## Solved\n')
+        f_readme.write(f'\n## Solved ({len(all_probs) - len(struggled_probs)} problems)\n')
         for difficulty, probs in difficulty_dict.items():
             f_readme.write(f'\n### {difficulty}\n')
             for prob_num in probs:
