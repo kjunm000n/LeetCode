@@ -1,6 +1,8 @@
 # LeetCode
 Personal solutions of LeetCode for algorithm study
 
+All codes are based on Python 3.9.6
+
 ## Structure
 [allProblems.py](solutions/allProblems.py) : class for loading problem classes <br>
 [interface.py](solutions/interface.py) : parent class for problem each class <br>
@@ -40,7 +42,7 @@ optional arguments:
                         exit program
 ```
 
-## Solved (19 problems)
+## Solved (20 problems)
 
 ### Easy
 [1](solutions/problem1.py)
@@ -61,6 +63,7 @@ optional arguments:
 [16](solutions/problem16.py)
 [17](solutions/problem17.py)
 [18](solutions/problem18.py)
+[22](solutions/problem22.py)
 [48](solutions/problem48.py)
 [445](solutions/problem445.py)
 

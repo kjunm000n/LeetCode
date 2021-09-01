@@ -1,5 +1,5 @@
 import os
-from typing import Optional, Union, Any, List, Dict
+from typing import Optional, Union, Any, List, Dict, Set
 
 from solutions.interface import TestFailedException, Difficulty
 
