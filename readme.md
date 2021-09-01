@@ -44,7 +44,7 @@ optional arguments:
 
 ## Solved (20 problems)
 
-### Easy
+### Easy (7 problems)
 [1](solutions/problem1.py)
 [7](solutions/problem7.py)
 [9](solutions/problem9.py)
@@ -53,7 +53,7 @@ optional arguments:
 [69](solutions/problem69.py)
 [367](solutions/problem367.py)
 
-### Medium
+### Medium (12 problems)
 [2](solutions/problem2.py)
 [3](solutions/problem3.py)
 [6](solutions/problem6.py)
@@ -67,7 +67,7 @@ optional arguments:
 [48](solutions/problem48.py)
 [445](solutions/problem445.py)
 
-### Hard
+### Hard (1 problems)
 [214](solutions/problem214.py)
 
 ## Struggled

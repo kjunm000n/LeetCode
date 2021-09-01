@@ -15,7 +15,7 @@ with open('base.md', 'r') as f_base:
         # Solved
         f_readme.write(f'\n## Solved ({len(all_probs) - len(struggled_probs)} problems)\n')
         for difficulty, probs in difficulty_dict.items():
-            f_readme.write(f'\n### {difficulty}\n')
+            f_readme.write(f'\n### {difficulty} ({len(probs)} problems)\n')
             for prob_num in probs:
                 f_readme.write(f'[{prob_num}](solutions/problem{prob_num}.py)\n')
 
