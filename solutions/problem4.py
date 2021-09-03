@@ -1,7 +1,7 @@
 # [4] Median of Two Sorted Arrays
 
 import random
-from typing import Optional, Union, Any, List, Dict, Set
+from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
 from main import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
