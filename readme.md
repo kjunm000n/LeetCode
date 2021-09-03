@@ -67,6 +67,7 @@ optional arguments:
 [22](solutions/problem22.py)
 [33](solutions/problem33.py)
 [36](solutions/problem36.py)
+[45](solutions/problem45.py)
 [48](solutions/problem48.py)
 [445](solutions/problem445.py)
 
