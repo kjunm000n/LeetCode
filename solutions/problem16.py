@@ -1,7 +1,7 @@
 # [16] 3Sum Closest
 
 import random
-from typing import Optional, Union, Any, List, Dict, Set
+from typing import Optional, Union, Any, List, Tuple, Set, Dict
 from itertools import combinations, product
 from functools import reduce
 
