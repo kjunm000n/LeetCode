@@ -42,7 +42,7 @@ optional arguments:
                         exit program
 ```
 
-## Solved (22 problems)
+## Solved (23 problems)
 
 ### Easy (7 problems)
 [1](solutions/problem1.py)
@@ -53,7 +53,7 @@ optional arguments:
 [69](solutions/problem69.py)
 [367](solutions/problem367.py)
 
-### Medium (14 problems)
+### Medium (15 problems)
 [2](solutions/problem2.py)
 [3](solutions/problem3.py)
 [6](solutions/problem6.py)
@@ -65,6 +65,7 @@ optional arguments:
 [18](solutions/problem18.py)
 [19](solutions/problem19.py)
 [22](solutions/problem22.py)
+[33](solutions/problem33.py)
 [36](solutions/problem36.py)
 [48](solutions/problem48.py)
 [445](solutions/problem445.py)
