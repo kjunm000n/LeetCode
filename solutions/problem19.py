@@ -17,7 +17,7 @@ class Problem19(ProblemInterface):
             if not 0 <= val <= 100:
                 raise ValueError
 
-        def copy(self):
+        def copy(self) -> 'ListNode':
             head = self.__class__(val=self.val)
             curr_this, curr_other = self.next, head
             while curr_this:
@@ -25,7 +25,7 @@ class Problem19(ProblemInterface):
                 curr_this, curr_other = curr_this.next, curr_other.next
             return head
 
-        def __eq__(self, other):
+        def __eq__(self, other: 'ListNode') -> bool:
             if other is None:
                 return False
             if self.val != other.val:
