@@ -1,10 +1,13 @@
 u"""
-    Run Solution for LeetCode Problems
+Run Solution for LeetCode Problems
 """
 import os
 import sys
 import argparse
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
+
+from definitions import ROOT_DIR, all_probs, struggled_probs
+from solutions.allProblems import AllProblems
 
 sys.setrecursionlimit(100000)
 
@@ -34,16 +37,12 @@ def create_parser(initial_call=False):
 
 
 parser = create_parser(initial_call=True)
-args = parser.parse_args()
+args, unknown = parser.parse_known_args()
 debug_mode = args.debug_mode is not None
 
 # Getting Problems Info
-all_probs = sorted([int(module[7:-3]) for module in os.listdir('solutions') if module.startswith('problem')])
-struggled_probs = [4, 5, ]  # Not solved yet
 skip_probs = args.skips
 skip_probs = list(set(struggled_probs + skip_probs))
-
-from solutions.allProblems import AllProblems
 
 
 def main(parsed_args: Any):  # Namespace class

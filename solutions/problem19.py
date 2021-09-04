@@ -3,7 +3,7 @@
 import random
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 
@@ -77,7 +77,7 @@ class Problem19(ProblemInterface):
         n = random.randint(1, sz)
         head = self.ListNode(random.randint(1, val_size))
         curr = head
-        for i in range(sz):
+        for _ in range(sz):
             next_node = self.ListNode(random.randint(1, val_size))
             curr.next, curr = next_node, next_node
         answer1 = self.solution(head.copy(), n)

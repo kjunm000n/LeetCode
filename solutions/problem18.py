@@ -5,7 +5,7 @@ from typing import Optional, Union, Any, List, Tuple, Set, Dict
 from itertools import combinations, product
 from functools import reduce
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 

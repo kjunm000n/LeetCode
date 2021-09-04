@@ -4,7 +4,7 @@ import random
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 import itertools
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 

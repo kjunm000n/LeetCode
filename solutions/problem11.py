@@ -3,7 +3,7 @@ import itertools
 import random
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 
@@ -65,7 +65,7 @@ class Problem11(ProblemInterface):
 
     @ProblemInterface.time_check(debug_mode)
     def failed_solution1(self, height: List[int]) -> int:
-        u""" Idea: 앞에서한칸, 뒤에서한칸씩 땡기기 / time complexity: O(n) """
+        u""" Idea: one from front, one from back / time complexity: O(n) """
         answer = 0
         front_iter, back_iter = 0, len(height) - 1
         prev_front_iter, prev_back_iter = 0, len(height) - 1
