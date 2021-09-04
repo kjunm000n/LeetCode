@@ -1,4 +1,4 @@
-from main import all_probs, struggled_probs, debug_mode
+from definitions import all_probs, struggled_probs
 from solutions.allProblems import AllProblems
 
 
@@ -9,7 +9,7 @@ with open('base.md', 'r') as f_base:
     with open('readme.md', 'w') as f_readme:
         f_readme.write(base_md)
 
-        ap = AllProblems(probs=all_probs, skip_probs=struggled_probs)
+        ap = AllProblems()
         difficulty_dict = ap.divide_by_difficulty()
 
         # Solved

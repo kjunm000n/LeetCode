@@ -4,9 +4,13 @@ Personal solutions of LeetCode for algorithm study
 All codes are based on Python 3.9.6
 
 ## Structure
-[allProblems.py](solutions/allProblems.py) : class for loading problem classes <br>
-[interface.py](solutions/interface.py) : parent class for problem each class <br>
-[sample.py](solutions/sample.py) : sample template of problem class
+|code|description|
+|---|---|
+|[definitions.py](definitions.py) | define global variables like root directory and list of solved problems |
+|[allProblems.py](solutions/allProblems.py) |class for loading problem classes |
+|[interface.py](solutions/interface.py) | parent class for problem each class |
+|[sample.py](solutions/sample) | sample template of problem class |
+|[test.py](solutions/test.py) | run solution code with pytest |
 
 ### common methods
 |name|location|Nullable|description|

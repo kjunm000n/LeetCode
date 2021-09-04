@@ -5,12 +5,13 @@ from typing import Optional, Union, Any, List, Tuple, Set, Dict
 from itertools import combinations, product
 from functools import reduce
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem18(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = '4sum'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, nums: List[int], target: int) -> List[List[int]]:

@@ -4,12 +4,13 @@ import copy
 import random
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem48(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'rotate-image'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, matrix: List[List[int]]) -> None:

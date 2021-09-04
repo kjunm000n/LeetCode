@@ -3,12 +3,13 @@
 import random
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem2(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'add-two-numbers-2'
 
     class ListNode:
         def __init__(self, val=0, next=None):

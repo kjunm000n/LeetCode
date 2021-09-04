@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}
+{{ template_title | safe }}
+{% endblock %}
+{% block body %}
+    {% for difficulty, probs in template_problems | dictsort %}
+        <h3> {{ difficulty | safe }} </h3>
+        {% for problem_num in probs %}<ul><li><a href="/solutions/{{ problem_num }}">{{ problem_num | safe }}</a></li></ul>{% endfor%}
+    {% endfor%}
+{% endblock %}

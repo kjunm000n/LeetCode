@@ -4,12 +4,13 @@ import random
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 import itertools
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem17(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'letter-combinations-of-a-phone-number'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, digits: str) -> List[str]:

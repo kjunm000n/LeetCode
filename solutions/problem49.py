@@ -4,12 +4,13 @@ import random
 import string
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem49(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'group-anagrams'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, strs: List[str]) -> List[List[str]]:
@@ -28,7 +29,7 @@ class Problem49(ProblemInterface):
             alphabets[ord(c) - 97] += 1
         return hash(tuple(alphabets))
 
-    def to_tuple(s):
+    def to_tuple(self, s):
         s_dict = {}
         for c in s:
             s_dict.setdefault(c, 0)

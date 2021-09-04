@@ -71,6 +71,10 @@ class ProblemInterface:
 
         return decorator
 
+    @staticmethod
+    def title_to_name(title):
+        return ''.join(title.replace('(', '').replace(')', '').replace(',', '-').replace(' ', '-')).lower()
+
 
 class TestFailedException(Exception):
     def __init__(self, value):
@@ -84,3 +88,14 @@ class Difficulty(Enum):
     Easy = 0
     Medium = 1
     Hard = 2
+
+    @staticmethod
+    def to_str(difficulty: 'Difficulty') -> str:
+        if difficulty == Difficulty.Easy:
+            return 'Easy'
+        elif difficulty == Difficulty.Medium:
+            return 'Medium'
+        elif difficulty == Difficulty.Hard:
+            return 'Hard'
+        else:
+            raise ValueError

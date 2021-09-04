@@ -3,13 +3,13 @@
 import random
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem1(ProblemInterface):
     difficulty = Difficulty.Easy
-
+    name = 'two-sum'
 
     def get_num_dict(self, nums: List[int]) -> Dict[int, List[int]]:
         u"""save indexes for each value / time complexity: O(n) """

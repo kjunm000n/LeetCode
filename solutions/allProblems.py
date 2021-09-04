@@ -1,6 +1,7 @@
 import os
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
+from definitions import ROOT_DIR, all_probs, struggled_probs
 from solutions.interface import TestFailedException, Difficulty
 
 
@@ -8,7 +9,7 @@ def import_problems(probs: Optional[List[int]], skip_probs: Optional[List[int]])
     try:
         module_dict = {}
         for prob_num in [prob_num for prob_num in probs if prob_num not in skip_probs]:
-            solutions = __import__(f'solutions.problem{prob_num}')
+            solutions = __import__(f"""solutions.problem{prob_num}""")
             module_dict[prob_num] = getattr(solutions, f'problem{prob_num}')
     except ImportError:
         raise ImportError
@@ -17,7 +18,7 @@ def import_problems(probs: Optional[List[int]], skip_probs: Optional[List[int]])
 
 class AllProblems:
     def __init__(self, probs: Optional[List[int]] = None, skip_probs: Optional[List[int]] = None):
-        self.module_dict = import_problems(probs=probs, skip_probs=skip_probs)
+        self.module_dict = import_problems(probs=probs or all_probs, skip_probs=skip_probs or struggled_probs)
         self.probs = {}
         self.get_all_problems()
 

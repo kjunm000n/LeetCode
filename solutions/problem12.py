@@ -3,12 +3,13 @@
 import random
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem12(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'integer-to-roman'
 
     @staticmethod
     def generate_Roman(digit: int, char1: str, char5: str, char10: str) -> str:

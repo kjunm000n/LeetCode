@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}
+Problem {{ problem_num | safe }}
+{% endblock %}
+{% block body %}
+    <ul><li><a href="https://leetcode.com/problems/{{ problem_name }}">LeetCode Link</a></li></ul>
+    <h3>Problem Code</h3>
+    {{ problem_code }}
+{% endblock %}

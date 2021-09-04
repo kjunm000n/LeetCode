@@ -3,12 +3,13 @@
 import random
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem36(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'valid-sudoku'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, board: List[List[str]]) -> bool:

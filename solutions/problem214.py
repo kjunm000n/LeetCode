@@ -4,12 +4,13 @@ import string
 import random
 from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
-from main import debug_mode
+from definitions import debug_mode
 from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem214(ProblemInterface):
     difficulty = Difficulty.Hard
+    name = 'shortest-palindrome'
 
     @staticmethod
     def is_palindrom(s: str) -> bool:
