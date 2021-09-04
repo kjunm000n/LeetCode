@@ -1,8 +1,10 @@
 import argparse
 import os
 
+from solutions.interface import ProblemInterface
+
 parser = argparse.ArgumentParser()
-parser.add_argument('-n', '--num', default=0, type=int, help="problem number to generate sample.py")
+parser.add_argument('-n', '--num', default=0, type=int, help="problem number to generate from sample")
 args = parser.parse_args()
 num = args.num
 while not num:
@@ -14,11 +16,11 @@ while not num:
         print("problem number isn't number")
 
 print(f"...generating solutions/problem{num}.py...")
-sample_path = 'solutions/sample.py'
+sample_path = 'solutions/sample'
 problem_path = f'solutions/problem{num}.py'
 
 if not os.path.exists(sample_path):
-    print("sample.py doesn't exist")
+    print("sample doesn't exist")
     exit(-1)
 if os.path.exists(problem_path):
     print("problem.py already exists")
@@ -36,30 +38,18 @@ with open(sample_path, 'r') as f_sample:
     while not difficulty:
         print('please enter the difficulty of problem (Easy, Medium, Hard or 1,2,3)')
         difficulty = input()
-        if difficulty.isalpha():
-            if difficulty.lower() == 'easy':
-                break
-            elif difficulty.lower() == 'medium':
-                sample = sample.replace('Difficulty.Easy', 'Difficulty.Medium')
-                break
-            elif difficulty.lower() == 'hard':
-                sample = sample.replace('Difficulty.Easy', 'Difficulty.Hard')
-                break
-            else:
-                difficulty = None
-        if difficulty.isdigit():
-            difficulty = int(difficulty)
-            if difficulty == 1:
-                break
-            elif difficulty == 2:
-                sample = sample.replace('Difficulty.Easy', 'Difficulty.Medium')
-                break
-            elif difficulty == 3:
-                sample = sample.replace('Difficulty.Easy', 'Difficulty.Hard')
-                break
-            else:
-                difficulty = None
-    sample = sample.replace('**Sample Text**', title)
+        if difficulty in ['easy', 'Easy', 'EASY', '1']:
+            difficulty = 'Easy'
+        elif difficulty in ['medium', 'Medium', 'MEDIUM', '2']:
+            difficulty = 'Medium'
+        elif difficulty in ['hard', 'Hard', 'HARD', '3']:
+            difficulty = 'Hard'
+        else:
+            difficulty = None
+
+    name = f"'{ProblemInterface.title_to_name(title)}'"
+    for col in ['title', 'name', 'difficulty']:
+        sample = sample.replace("{{ "+col+" }}", eval(col))
 
     with open(problem_path, 'w') as f_problem:
         f_problem.write(sample)

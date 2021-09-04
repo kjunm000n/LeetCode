@@ -10,6 +10,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem5(ProblemInterface):
     difficulty = Difficulty.Easy
+    name = 'longest-palindromic-substring'
 
     @staticmethod
     def is_palindrom(self, s: str) -> bool:

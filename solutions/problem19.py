@@ -9,6 +9,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem19(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'remove-nth-node-from-end-of-list'
 
     class ListNode:
         def __init__(self, val=0, next=None):

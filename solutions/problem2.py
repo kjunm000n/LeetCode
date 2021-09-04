@@ -9,6 +9,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem2(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'add-two-numbers-2'
 
     class ListNode:
         def __init__(self, val=0, next=None):

@@ -11,6 +11,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem16(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = '3sum-closest'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, nums: List[int], target: int) -> List[List[int]]:

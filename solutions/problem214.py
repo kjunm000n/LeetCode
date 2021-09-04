@@ -10,6 +10,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem214(ProblemInterface):
     difficulty = Difficulty.Hard
+    name = 'shortest-palindrome'
 
     @staticmethod
     def is_palindrom(s: str) -> bool:

@@ -10,6 +10,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem3(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'longest-substring-without-repeating-characters'
 
     def insert(self, dic: Dict[str, int], k: str) -> bool:
         u""" time complexity: O(1) """

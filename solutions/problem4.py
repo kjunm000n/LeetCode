@@ -9,6 +9,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem4(ProblemInterface):
     difficulty = Difficulty.Hard
+    name = 'median-of-two-sorted-arrays'
 
     @staticmethod
     def avg(self, nums: List[int]) -> int:

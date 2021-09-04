@@ -1,7 +1,9 @@
+import re
 from flask import Flask, render_template, make_response
 from flask_restful import Resource, Api
 from flask_restful import reqparse
 from markupsafe import escape
+from bs4 import BeautifulSoup
 
 from definitions import ROOT_DIR
 from solutions.allProblems import AllProblems
@@ -26,7 +28,10 @@ class CreateSolution(Resource):
 
             with open(f'../solutions/problem{num}.py', 'r') as problem:
                 problem_code = problem.read()
-                return problem_code
+                problem_name = re.findall("    name = '([0-9a-z\-]+)'", problem_code)[0]
+                problem_code = BeautifulSoup(problem_code).prettify()
+                return make_response(
+                    render_template("problem.html", problem_name=problem_name, problem_code=problem_code))
         except IOError:
             return {'error': f'problem{num} was not loaded properly.'}
 

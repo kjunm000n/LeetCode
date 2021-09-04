@@ -10,6 +10,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem14(ProblemInterface):
     difficulty = Difficulty.Easy
+    name = 'longest-common-prefix'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, strs: List[str]) -> str:

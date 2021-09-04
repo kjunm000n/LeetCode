@@ -10,6 +10,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem48(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'rotate-image'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, matrix: List[List[int]]) -> None:

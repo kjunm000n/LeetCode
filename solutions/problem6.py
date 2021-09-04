@@ -10,6 +10,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem6(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'zigzag-conversion'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, s: str, numRows: int) -> str:

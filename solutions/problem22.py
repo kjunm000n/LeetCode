@@ -10,6 +10,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem22(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'generate-parentheses'
 
     @cache
     def generateParenthesis(self, n: int) -> Set[str]:

@@ -10,6 +10,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem15(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = '3sum'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, nums: List[int]) -> List[List[int]]:

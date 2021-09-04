@@ -9,6 +9,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem1(ProblemInterface):
     difficulty = Difficulty.Easy
+    name = 'two-sum'
 
     def get_num_dict(self, nums: List[int]) -> Dict[int, List[int]]:
         u"""save indexes for each value / time complexity: O(n) """

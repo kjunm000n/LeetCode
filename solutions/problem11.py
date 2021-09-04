@@ -9,6 +9,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem11(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'container-with-most-water'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, height: List[int]) -> int:

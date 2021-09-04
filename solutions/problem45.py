@@ -9,6 +9,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem45(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'jump-game-ii'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, nums: List[int]) -> int:

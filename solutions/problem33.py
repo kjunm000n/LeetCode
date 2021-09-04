@@ -9,6 +9,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem33(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'search-in-rotated-sorted-array'
 
     def bisection(self, nums, target, base):
         u""" time complexity: O(log(n)) """

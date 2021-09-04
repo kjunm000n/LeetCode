@@ -9,6 +9,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem36(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'valid-sudoku'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, board: List[List[str]]) -> bool:

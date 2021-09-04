@@ -10,6 +10,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem49(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'group-anagrams'
 
     @ProblemInterface.time_check(debug_mode)
     def solution(self, strs: List[str]) -> List[List[str]]:

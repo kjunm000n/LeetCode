@@ -71,6 +71,10 @@ class ProblemInterface:
 
         return decorator
 
+    @staticmethod
+    def title_to_name(title):
+        return ''.join(title.replace('(', '').replace(')', '').replace(',', '-').replace(' ', '-')).lower()
+
 
 class TestFailedException(Exception):
     def __init__(self, value):

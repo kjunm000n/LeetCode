@@ -9,6 +9,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem12(ProblemInterface):
     difficulty = Difficulty.Medium
+    name = 'integer-to-roman'
 
     @staticmethod
     def generate_Roman(digit: int, char1: str, char5: str, char10: str) -> str:

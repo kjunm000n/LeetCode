@@ -9,6 +9,7 @@ from solutions.interface import ProblemInterface, Difficulty
 
 class Problem7(ProblemInterface):
     difficulty = Difficulty.Easy
+    name = 'reverse-integer'
 
     @ProblemInterface.time_check(debug_mode)
     def get_reverse(self, x: int, digit=0) -> (int, int):
