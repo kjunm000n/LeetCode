@@ -2,13 +2,15 @@
 
 import string
 import random
-from typing import Optional, Union, Any
+from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem6(ProblemInterface):
+    difficulty = Difficulty.Medium
+
     @ProblemInterface.time_check(debug_mode)
     def solution(self, s: str, numRows: int) -> str:
         u""" time complexity: O(n) """
@@ -29,6 +31,8 @@ class Problem6(ProblemInterface):
     @ProblemInterface.time_check(debug_mode)
     def comparison_solution(self, s: str, numRows: int) -> str:
         u""" time complexity: O(n) """
+        if numRows == 1:
+            return s
         line_dict = {i: [] for i in range(numRows)}
         for i, c in enumerate(s):
             line = min(i%((numRows-1)*2), ((numRows-1)*2)-i%((numRows-1)*2))

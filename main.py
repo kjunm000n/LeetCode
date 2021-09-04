@@ -4,6 +4,7 @@ u"""
 import os
 import sys
 import argparse
+from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
 sys.setrecursionlimit(100000)
 
@@ -45,7 +46,7 @@ skip_probs = list(set(struggled_probs + skip_probs))
 from solutions.allProblems import AllProblems
 
 
-def main(parsed_args):
+def main(parsed_args: Any):  # Namespace class
     ap = AllProblems(probs=parsed_args.problems or all_probs, skip_probs=skip_probs)
     if parsed_args.problems:
         if parsed_args.inputs:
@@ -63,17 +64,21 @@ def main(parsed_args):
         ap.test_all(iteration=parsed_args.num)
 
 
-def get_input(inp, ap, prob_num):
+def get_input(inp: Dict[str, Any], ap: AllProblems, prob_num: int) -> Dict[str, Any]:
     for k, v in inp.items():
         try:
-            inp[k] = eval(v)
-        except NameError:
+            if type(v) == str and '(' in v and ')' in v:
+                inp[k] = eval(v)
+            else:
+                inp[k] = v
+        except (NameError, TypeError):
             try:
                 cls_name, val = v.split('.')[-1].split('(')
                 val = eval(val.replace(')', ''))
                 inp[k] = getattr(getattr(ap.module_dict[prob_num], f'Problem{prob_num}'), cls_name)(val)
             except ImportError:
                 raise ImportError
+    return inp
 
 
 # Press the green button in the gutter to run the script.

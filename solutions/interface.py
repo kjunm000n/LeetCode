@@ -1,15 +1,17 @@
 import time
 import functools
+from typing import Optional, Union, Any, List, Tuple, Set, Dict
+from enum import Enum
 
 
 class ProblemInterface:
     def solution(self, *args, **kwargs):
         raise NotImplementedError
 
-    def comparison_solution(self, nums1, nums2):
+    def comparison_solution(self, *args, **kwargs):
         raise NotImplementedError
 
-    def test_one(self, given_input, expected_output):
+    def test_one(self, given_input: Dict[str, Any], expected_output: Any):
         my_output = self.solution(**given_input)
         print(f"output: {my_output}")
         assert my_output == expected_output
@@ -48,7 +50,7 @@ class ProblemInterface:
 
     @staticmethod
     def print_func_runtime(func_name, st, et):
-        print(f'{func_name} took {(et-st)/10**9:.6f}ms')
+        print(f'{func_name} took {(et - st) / 10 ** 9:.6f}ms')
 
     @staticmethod
     def time_check(debug_mode=True):
@@ -64,7 +66,9 @@ class ProblemInterface:
                     ProblemInterface.print_func_output(return_val)
                     ProblemInterface.print_func_runtime(func.__name__, st, et)
                 return return_val
+
             return wrapper
+
         return decorator
 
 
@@ -74,3 +78,9 @@ class TestFailedException(Exception):
 
     def __str__(self):
         return self.value
+
+
+class Difficulty(Enum):
+    Easy = 0
+    Medium = 1
+    Hard = 2

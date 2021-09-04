@@ -1,14 +1,17 @@
 # [1] Two Sum
 
 import random
-from typing import Optional, Union, Any
+from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem1(ProblemInterface):
-    def get_num_dict(self, nums):
+    difficulty = Difficulty.Easy
+
+
+    def get_num_dict(self, nums: List[int]) -> Dict[int, List[int]]:
         u"""save indexes for each value / time complexity: O(n) """
         num_dict = dict()
         for i, num in enumerate(nums):
@@ -19,7 +22,7 @@ class Problem1(ProblemInterface):
         return num_dict
 
     @ProblemInterface.time_check(debug_mode)
-    def solution(self, nums, target):
+    def solution(self, nums: List[int], target: int) -> List[int]:
         u""" time complexity: O(nlog(n)) """
         answer = []
         num_dict = self.get_num_dict(nums)
@@ -38,7 +41,7 @@ class Problem1(ProblemInterface):
         return answer
 
     @ProblemInterface.time_check(debug_mode)
-    def comparison_solution(self, nums, target):
+    def comparison_solution(self, nums: List[int], target: int) -> List[int]:
         u""" time complexity: O(n^2) """
         for i, num1 in enumerate(nums):
             for j in range(i+1, len(nums)):

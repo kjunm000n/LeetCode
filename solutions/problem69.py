@@ -1,13 +1,15 @@
 # [69] Sqrt(x)
 
 import random
-from typing import Optional, Union, Any
+from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem69(ProblemInterface):
+    difficulty = Difficulty.Easy
+
     @ProblemInterface.time_check(debug_mode)
     def solution(self, x: int) -> int:
         u""" time complexity: O(log(n)) """
@@ -32,7 +34,6 @@ class Problem69(ProblemInterface):
         return int(sqrt(x))
 
     def test_one_random(self, num_size=2**31):
-
         num = random.randint(0, num_size)
         answer1 = self.solution(num)
         answer2 = self.comparison_solution(num)

@@ -1,13 +1,15 @@
 # [2] Add Two Numbers 2
 
 import random
-from typing import Optional, Union, Any
+from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem2(ProblemInterface):
+    difficulty = Difficulty.Medium
+
     class ListNode:
         def __init__(self, val=0, next=None):
             self.val = val
@@ -15,7 +17,7 @@ class Problem2(ProblemInterface):
             if not 0 <= val <= 9:
                 raise ValueError
 
-        def __eq__(self, other):
+        def __eq__(self, other: 'ListNode') -> bool:
             if self.val != other.val:
                 return False
             else:
@@ -63,7 +65,7 @@ class Problem2(ProblemInterface):
 
         return head_node
 
-    def int_to_ListNode(self, val):
+    def int_to_ListNode(self, val: int) -> ListNode:
         u""" time complexity: O(n) """
         head_node = self.ListNode(val=val % 10)
         prev_node = head_node
@@ -82,7 +84,7 @@ class Problem2(ProblemInterface):
         u""" time complexity: O(n) """
         return self.int_to_ListNode((self.ListNode_to_int(l1) + self.ListNode_to_int(l2)))
 
-    def ListNode_to_int(self, curr_node):
+    def ListNode_to_int(self, curr_node: ListNode) -> int:
         u""" time complexity: O(n) """
         sum_val = curr_node.val
         next_node = curr_node.next
@@ -93,7 +95,7 @@ class Problem2(ProblemInterface):
             i += 1
         return sum_val
 
-    def int_list_to_ListNode(self, lst):
+    def int_list_to_ListNode(self, lst: List[int]) -> ListNode:
         u""" time complexity: O(n) """
         next_node = self.ListNode(lst.pop())
         while lst:

@@ -1,6 +1,8 @@
 # LeetCode
 Personal solutions of LeetCode for algorithm study
 
+All codes are based on Python 3.9.6
+
 ## Structure
 [allProblems.py](solutions/allProblems.py) : class for loading problem classes <br>
 [interface.py](solutions/interface.py) : parent class for problem each class <br>
@@ -40,16 +42,39 @@ optional arguments:
                         exit program
 ```
 
-## Solved
+## Solved (26 problems)
+
+### Easy (7 problems)
 [1](solutions/problem1.py)
+[7](solutions/problem7.py)
+[9](solutions/problem9.py)
+[13](solutions/problem13.py)
+[14](solutions/problem14.py)
+[69](solutions/problem69.py)
+[367](solutions/problem367.py)
+
+### Medium (18 problems)
 [2](solutions/problem2.py)
 [3](solutions/problem3.py)
 [6](solutions/problem6.py)
-[7](solutions/problem7.py)
-[69](solutions/problem69.py)
-[214](solutions/problem214.py)
-[367](solutions/problem367.py)
+[11](solutions/problem11.py)
+[12](solutions/problem12.py)
+[15](solutions/problem15.py)
+[16](solutions/problem16.py)
+[17](solutions/problem17.py)
+[18](solutions/problem18.py)
+[19](solutions/problem19.py)
+[22](solutions/problem22.py)
+[33](solutions/problem33.py)
+[36](solutions/problem36.py)
+[45](solutions/problem45.py)
+[48](solutions/problem48.py)
+[49](solutions/problem49.py)
+[55](solutions/problem55.py)
 [445](solutions/problem445.py)
+
+### Hard (1 problems)
+[214](solutions/problem214.py)
 
 ## Struggled
 [4](solutions/problem4.py)

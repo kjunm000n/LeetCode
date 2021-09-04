@@ -1,13 +1,15 @@
 # [445] Add Two Numbers 2
 
 import random
-from typing import Optional, Union, Any
+from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem445(ProblemInterface):
+    difficulty = Difficulty.Medium
+
     class ListNode:
         def __init__(self, val=0, next=None):
             self.val = val
@@ -15,7 +17,7 @@ class Problem445(ProblemInterface):
             if not 0 <= val <= 9:
                 raise ValueError
 
-        def __eq__(self, other):
+        def __eq__(self, other: 'ListNode') -> bool:
             if self.val != other.val:
                 return False
             else:
@@ -26,7 +28,7 @@ class Problem445(ProblemInterface):
                 else:
                     return self.next.__eq__(other.next)
 
-        def __repr__(self):
+        def __repr__(self) -> str:
             return str(self.val) + self.next.__repr__() if self.next else ''
 
     def sum_ListNode(self, n1: ListNode, n2: ListNode, carry=0) -> (ListNode, int):
@@ -65,7 +67,7 @@ class Problem445(ProblemInterface):
             next_node = prev_node
         return next_node
 
-    def int_to_ListNode(self, val):
+    def int_to_ListNode(self, val: int) -> ListNode:
         u""" time complexity: O(n) """
         next_node = None
         while True:
@@ -77,7 +79,7 @@ class Problem445(ProblemInterface):
                 break
         return next_node
 
-    def ListNode_to_int(self, curr_node):
+    def ListNode_to_int(self, curr_node: ListNode) -> int:
         u""" time complexity: O(n) """
         sum_val = curr_node.val
         next_node = curr_node.next

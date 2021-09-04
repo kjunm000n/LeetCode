@@ -1,6 +1,8 @@
 # LeetCode
 Personal solutions of LeetCode for algorithm study
 
+All codes are based on Python 3.9.6
+
 ## Structure
 [allProblems.py](solutions/allProblems.py) : class for loading problem classes <br>
 [interface.py](solutions/interface.py) : parent class for problem each class <br>

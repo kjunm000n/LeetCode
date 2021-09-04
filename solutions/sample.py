@@ -1,13 +1,15 @@
-# [N] Sample
+# [N] **Sample Text**
 
 import random
-from typing import Optional, Union, Any
+from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class ProblemN(ProblemInterface):
+    difficulty = Difficulty.Easy
+
     @ProblemInterface.time_check(debug_mode)
     def solution(self):
         u""" time complexity: O() """
@@ -22,6 +24,4 @@ class ProblemN(ProblemInterface):
     #     answer1 = self.solution()
     #     answer2 = self.comparison_solution()
     #
-    #     if debug_mode:
-    #        print(answer1, answer2)
     #     assert answer1 == answer2

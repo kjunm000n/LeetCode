@@ -1,27 +1,27 @@
-import main
 from main import all_probs, struggled_probs, debug_mode
 from solutions.allProblems import AllProblems
-import os
 
-if debug_mode:
-    print("generating readme.md...")
+
+print("...generating readme.md...")
+
 with open('base.md', 'r') as f_base:
-
     base_md = f_base.read()
     with open('readme.md', 'w') as f_readme:
         f_readme.write(base_md)
 
-        ap = AllProblems()
+        ap = AllProblems(probs=all_probs, skip_probs=struggled_probs)
+        difficulty_dict = ap.divide_by_difficulty()
 
         # Solved
-        f_readme.write('\n## Solved\n')
-        for prob_num in filter(lambda x: x not in struggled_probs, all_probs):
-            f_readme.write(f'[{prob_num}](solutions/problem{prob_num}.py)\n')
+        f_readme.write(f'\n## Solved ({len(all_probs) - len(struggled_probs)} problems)\n')
+        for difficulty, probs in difficulty_dict.items():
+            f_readme.write(f'\n### {difficulty} ({len(probs)} problems)\n')
+            for prob_num in probs:
+                f_readme.write(f'[{prob_num}](solutions/problem{prob_num}.py)\n')
 
         # Struggled
         f_readme.write('\n## Struggled\n')
         for prob_num in struggled_probs:
             f_readme.write(f'[{prob_num}](solutions/problem{prob_num}.py)\n')
 
-if debug_mode:
-    print("readme.md was generated")
+print("...readme.md was generated...")

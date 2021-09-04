@@ -1,26 +1,28 @@
 # [4] Median of Two Sorted Arrays
 
 import random
-from typing import Optional, Union, Any
+from typing import Optional, Union, Any, List, Tuple, Set, Dict
 
 from main import debug_mode
-from solutions.interface import ProblemInterface
+from solutions.interface import ProblemInterface, Difficulty
 
 
 class Problem4(ProblemInterface):
+    difficulty = Difficulty.Hard
+
     @staticmethod
-    def avg(self, nums):
+    def avg(self, nums: List[int]) -> int:
         u""" time complexity: O(1) """
         return sum(nums)/len(nums)
 
     @staticmethod
-    def median(self, nums, with_arr=False):
+    def median(self, nums: List[int], with_arr=False) -> Union[List[int], int]:
         u""" time complexity: O(1) """
         answer = [num for i, num in enumerate(nums) if i == len(nums)//2 or (len(nums)%2==0 and i == len(nums)//2-1)]
         return answer if with_arr else self.avg(answer)
 
     @ProblemInterface.time_check(debug_mode)
-    def solution(self, nums1, nums2):
+    def solution(self, nums1: List[int], nums2: List[int]) -> float:
         u""" time complexity: O(log (m+n)) """
         if debug_mode:
             print(f"func({nums1},{nums2})")
@@ -52,7 +54,7 @@ class Problem4(ProblemInterface):
         return self.solution(next_nums1, next_nums2)
 
     @ProblemInterface.time_check(debug_mode)
-    def comparison_solution(self, nums1, nums2):
+    def comparison_solution(self, nums1: List[int], nums2: List[int]) -> float:
         u""" time complexity: O((m+n) log (m+n)) """
         nums = sorted(nums1+nums2)
         return self.median(nums)
