@@ -1,10 +1,12 @@
 {% extends "base.html" %}
-{% block title %}
-{{ template_title | safe }}
-{% endblock %}
+{% block title %}index.html{% endblock %}
 {% block body %}
-    {% for difficulty, probs in template_problems | dictsort %}
-        <h3> {{ difficulty | safe }} </h3>
-        {% for problem_num in probs %}<ul><li><a href="/solutions/{{ problem_num }}">{{ problem_num | safe }}</a></li></ul>{% endfor%}
-    {% endfor%}
+    <h2>LeetCode Problems</h2>
+    <a href="../readme.md">readme.md</a>
+    <h3>Easy</h3>
+    <ul>{% for problem_num in easy %}<li><a href="/solutions/{{ problem_num }}.html">{{ problem_num | safe }}</a></li>{% endfor%}</ul>
+    <h3>Medium</h3>
+    <ul>{% for problem_num in medium %}<li><a href="/solutions/{{ problem_num }}.html">{{ problem_num | safe }}</a></li>{% endfor%}</ul>
+    <h3>Hard</h3>
+    <ul>{% for problem_num in hard %}<li><a href="/solutions/{{ problem_num }}.html">{{ problem_num | safe }}</a></li>{% endfor%}</ul>
 {% endblock %}
