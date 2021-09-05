@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+{% block head %}
+    <link href="{{url_for('static', filename='prism.css')}}" rel="stylesheet" />
+{% endblock %}
 {% block title %}
-Problem {{ problem_num | safe }}
+Problem {{ num | safe }}
 {% endblock %}
 {% block body %}
-    <ul><li><a href="https://leetcode.com/problems/{{ problem_name }}">LeetCode Link</a></li></ul>
+    <h3>Problem Description Link</h3>
+    <ul><li><a href="https://leetcode.com/problems/{{ name }}">LeetCode Link (Problem {{ num }})</a></li></ul>
     <h3>Problem Code</h3>
-    {{ problem_code }}
+    <pre><code class="language-python">{{ code }}</code></pre>
+    <script src="{{url_for('static', filename='prism.js')}}"></script>
 {% endblock %}
